@@ -1,122 +1,123 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
+      <div className="animated-bg"></div>
+      
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+      </button>
+
+      <main className="portfolio-container">
+        
+        {/* Header Section */}
+        <header className="glass-panel">
+          <h1>Daniel Duran Torres</h1>
+          <h2>Mobile Developer specializing in React Native</h2>
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            Experienced in mobile application development, REST API integration, and building interfaces focused on performance and user experience. Proficient in JavaScript, TypeScript, React, and Node.js.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+          <div style={{ marginTop: '16px' }}>
+            <a href="mailto:daniel.duran.torres09@gmail.com" style={{ marginRight: '16px' }}>📧 daniel.duran.torres09@gmail.com</a>
+            <a href="https://github.com/DaniDuran09" target="_blank">🐙 GitHub</a>
+          </div>
+        </header>
 
-      <div className="ticks"></div>
+        {/* Experience Section */}
+        <section className="glass-panel">
+          <h2 className="section-title">Professional Experience</h2>
+          
+          <div className="experience-list">
+            {/* GRUPO FR */}
+            <div className="experience-card">
+              <div className="experience-image-slot">
+                <span>[ Image Placeholder ]<br/>Drop image here later</span>
+              </div>
+              <div className="experience-details">
+                <h3>Developer full Stack</h3>
+                <div className="company">GRUPO FR - Morelos, Mexico</div>
+                <div className="date">May 2026 - Present</div>
+                <ul>
+                  <li>Development of a mobile time clock module in React Native, implementing geolocation validations to restrict registrations outside of authorized locations.</li>
+                  <li>Administrative panel development in React with report generation and export in Excel.</li>
+                  <li>Design and implementation of REST APIs in Node.js and Express, integrating with PostgreSQL.</li>
+                </ul>
+              </div>
+            </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {/* TOBI */}
+            <div className="experience-card">
+              <div className="experience-image-slot">
+                <span>[ Image Placeholder ]<br/>Drop image here later</span>
+              </div>
+              <div className="experience-details">
+                <h3>Developer mobile</h3>
+                <div className="company">TOBI - Mexico City (Remote)</div>
+                <div className="date">June 2024 - June 2026</div>
+                <ul>
+                  <li>Complete mobile application development using React Native and TypeScript, from implementation to publication in App Store and Google Play Store.</li>
+                  <li>REST API integration, global state management with Redux, and async flows via Axios.</li>
+                  <li>Implementation of push notifications, deep linking, and code organization.</li>
+                </ul>
+              </div>
+            </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+            {/* SAID */}
+            <div className="experience-card">
+              <div className="experience-image-slot">
+                <span>[ Image Placeholder ]<br/>Drop image here later</span>
+              </div>
+              <div className="experience-details">
+                <h3>Developer web</h3>
+                <div className="company">SAID - Morelos, Mexico</div>
+                <div className="date">January 2026 - April 2026</div>
+                <ul>
+                  <li>Development and implementation of public and protected routes, applying authentication mechanisms.</li>
+                  <li>Integration and consumption of REST APIs, efficient data management using TanStack Query.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section className="glass-panel">
+          <h2 className="section-title">Technical Skills</h2>
+          <div className="skills-container">
+            {['Node.js', 'TypeScript', 'React', 'React Native', 'MySQL', 'Kotlin', 'CSS', 'PostgreSQL', 'Docker', 'MongoDB'].map(skill => (
+              <span key={skill} className="skill-badge glass-panel" style={{ padding: '8px 16px', backdropFilter: 'blur(4px)' }}>
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section className="glass-panel">
+          <h2 className="section-title">Education</h2>
+          <div className="experience-details">
+            <h3>Technological University of Emiliano Zapata</h3>
+            <div className="company">Morelos, Mexico</div>
+            <div className="date">August 2024 - Present</div>
+            <p>Associate's Degree in Multiplatform Software Development</p>
+          </div>
+        </section>
+
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
