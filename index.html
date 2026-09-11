@@ -134,10 +134,11 @@
   }
   .service-card{
     background:var(--steel-charcoal);padding:34px 26px;
-    transition:background .25s;position:relative;overflow:hidden;
+    transition:all .25s;position:relative;overflow:hidden;
+    cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;
   }
   .service-card.featured{background:#142338;}
-  .service-card:hover{background:#182a40;}
+  .service-card:hover{background:#182a40;transform:translateY(-2px);}
   .service-card::before{
     content:'';position:absolute;top:0;left:0;width:0;height:3px;
     background:var(--amber);transition:width .3s;
@@ -146,42 +147,37 @@
   .service-card.featured::before{width:100%;}
   .service-card .icn{width:38px;height:38px;margin-bottom:22px;color:var(--amber);}
   .service-card h3{font-size:1.05rem;margin-bottom:10px;letter-spacing:0.01em;}
-  .service-card p{color:var(--gray);font-size:0.88rem;}
-  .service-card .spec{
-    display:block;margin-top:16px;font-family:'JetBrains Mono',monospace;
-    font-size:0.7rem;color:var(--amber-dim);
+  .service-card p{color:var(--gray);font-size:0.88rem;margin-bottom:16px;}
+  .card-footer-action{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-top:auto;padding-top:14px;border-top:1px dashed rgba(255,255,255,0.08);
   }
+  .service-card .spec{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;color:var(--amber-dim);
+  }
+  .service-card .action-link{
+    font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+    color:var(--amber);font-weight:500;transition:transform .2s;
+  }
+  .service-card:hover .action-link{transform:translateX(3px);}
 
   /* ---------- PROCESO ---------- */
-  .process-list{display:flex;flex-direction:column;}
+  .process-list{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--steel-line);border:1px solid var(--steel-line);
+  }
   .process-item{
-    display:grid;grid-template-columns:90px 1fr;gap:28px;
-    padding:32px 0;border-top:1px solid var(--steel-line);
-    align-items:start;
+    background:var(--steel-dark);padding:26px 20px;
+    display:flex;flex-direction:column;align-items:flex-start;
   }
-  .process-item:last-child{border-bottom:1px solid var(--steel-line);}
   .process-item .idx{
-    font-family:'JetBrains Mono',monospace;font-size:0.95rem;color:var(--amber);
+    font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--amber);
+    background:rgba(255,122,46,0.1);padding:4px 10px;border:1px solid rgba(255,122,46,0.3);
+    border-radius:var(--radius);margin-bottom:14px;font-weight:600;
   }
-  .process-item h3{font-size:1.2rem;margin-bottom:8px;}
-  .process-item p{color:var(--gray);font-size:0.94rem;max-width:560px;}
-
-  /* ---------- PROYECTOS ---------- */
-  .projects{background:var(--steel-charcoal);}
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .proj-card{
-    border:1px solid var(--steel-line);border-radius:var(--radius);overflow:hidden;
-    background:var(--steel-dark);
-  }
-  .proj-thumb{
-    height:200px;position:relative;overflow:hidden;
-  }
-  .proj-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-  .proj-card:hover .proj-thumb img{transform:scale(1.06);}
-  .proj-body{padding:18px 20px;}
-  .proj-body .tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;}
-  .proj-body h3{font-size:1rem;margin:8px 0 4px;}
-  .proj-body p{color:var(--gray);font-size:0.82rem;}
+  .process-item h3{font-size:1.05rem;margin-bottom:6px;}
+  .process-item p{color:var(--gray);font-size:0.84rem;line-height:1.45;}
 
   /* ---------- WHY ---------- */
   .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);}
@@ -189,6 +185,47 @@
   .why-card svg{width:30px;height:30px;color:var(--amber);margin-bottom:18px;}
   .why-card h3{font-size:0.98rem;margin-bottom:8px;letter-spacing:0.01em;}
   .why-card p{font-size:0.85rem;color:var(--gray);}
+
+  /* ---------- MISION / VISION ---------- */
+  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);}
+  .mv-card{background:var(--steel-dark);padding:40px 36px;}
+  .mv-card .eyebrow{margin-bottom:16px;}
+  .mv-card p{color:var(--gray);font-size:0.96rem;max-width:480px;}
+  .mv-card p + p{margin-top:14px;}
+
+  /* ---------- PILARES (filosofía corporativa) ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border-bottom:1px solid var(--steel-line);margin-top:1px;}
+  .pillar{background:var(--steel-charcoal);padding:22px 24px;text-align:center;}
+  .pillar h3{font-size:1.05rem;margin-bottom:0;color:var(--amber);}
+
+  /* ---------- DECÁLOGO DE VALORES (tabla compacta) ---------- */
+  .decalogo-block{margin-top:1px;background:var(--steel-line);border-bottom:1px solid var(--steel-line);}
+  .decalogo-head{
+    background:var(--steel-charcoal);padding:14px 24px;border-bottom:1px solid var(--steel-line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .decalogo-head .lbl{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;}
+  .values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--steel-line);}
+  .value-card{background:var(--steel-dark);padding:16px 14px;display:flex;align-items:center;gap:10px;}
+  .value-card .num{
+    font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--amber);
+    background:rgba(255,122,46,0.12);padding:2px 6px;border-radius:var(--radius);flex-shrink:0;
+  }
+  .value-card h3{
+    font-size:0.84rem;margin:0;letter-spacing:0.01em;color:var(--paper);
+    font-family:'Inter',sans-serif;font-weight:600;text-transform:none;
+  }
+
+  /* ---------- MANTRA (frase institucional) ---------- */
+  .mantra{background:var(--steel-dark);border-bottom:1px solid var(--steel-line);padding:54px 0;text-align:center;}
+  .mantra p{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:clamp(1.15rem,2.6vw,1.85rem);letter-spacing:0.02em;color:var(--white);}
+  .mantra strong{color:var(--amber);font-weight:600;}
+
+  /* ---------- PROMESA ---------- */
+  .promise{background:var(--steel-charcoal);}
+  .promise-lines{max-width:640px;}
+  .promise-lines p{border-left:2px solid var(--amber);padding-left:18px;margin-bottom:14px;color:var(--paper);font-size:1rem;}
+  .promise-lines p.close{border-left-color:var(--steel-line);color:var(--gray);font-style:italic;margin-top:26px;}
 
   /* ---------- CONTACT ---------- */
   .contact{background:var(--steel-charcoal);}
@@ -228,14 +265,69 @@
   footer .fine a{color:var(--gray);}
   footer .fine a:hover{color:var(--amber);}
 
+  /* ---------- MODAL GALERÍA ---------- */
+  .modal-overlay{
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(6,10,16,0.92);backdrop-filter:blur(8px);
+    z-index:999;display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+    padding:20px;
+  }
+  .modal-overlay.active{opacity:1;pointer-events:auto;}
+  .modal-container{
+    background:var(--steel-charcoal);border:1px solid var(--steel-line);
+    border-radius:var(--radius);max-width:920px;width:100%;
+    position:relative;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.6);
+    display:flex;flex-direction:column;
+  }
+  .modal-header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 24px;border-bottom:1px solid var(--steel-line);
+    background:var(--steel-dark);
+  }
+  .modal-title{font-size:1.1rem;color:var(--white);display:flex;align-items:center;gap:10px;}
+  .modal-title span{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--amber);background:rgba(255,122,46,0.12);padding:3px 8px;border-radius:var(--radius);}
+  .modal-close{
+    background:none;border:none;color:var(--gray);cursor:pointer;
+    padding:6px;display:flex;align-items:center;justify-content:center;
+    transition:color .2s;
+  }
+  .modal-close:hover{color:var(--amber);}
+  .modal-body{position:relative;background:#000;display:flex;align-items:center;justify-content:center;min-height:360px;max-height:65vh;}
+  .modal-body img{max-width:100%;max-height:65vh;object-fit:contain;}
+  .modal-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(10,20,32,0.75);border:1px solid var(--steel-line);
+    color:var(--white);width:44px;height:44px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    transition:all .2s;z-index:2;
+  }
+  .modal-nav:hover{background:var(--amber);color:var(--steel-dark);border-color:var(--amber);}
+  .modal-nav.prev{left:16px;}
+  .modal-nav.next{right:16px;}
+  .modal-footer{
+    padding:14px 24px;background:var(--steel-dark);border-top:1px solid var(--steel-line);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  .modal-caption{font-size:0.88rem;color:var(--paper);}
+  .modal-counter{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--gray);flex-shrink:0;}
+
   @media (max-width:900px){
     .service-grid{grid-template-columns:repeat(2,1fr);}
+    .process-list{grid-template-columns:repeat(2,1fr);}
     .why-grid{grid-template-columns:repeat(2,1fr);}
-    .proj-grid{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;}
     .navlinks{display:none;}
     .hero{background-position:center 30%;}
     .row2{grid-template-columns:1fr;}
+    .mv-grid{grid-template-columns:1fr;}
+    .pillars{grid-template-columns:1fr;}
+    .values-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .service-grid{grid-template-columns:1fr;}
+    .process-list{grid-template-columns:1fr;}
+    .values-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -250,8 +342,7 @@
     <div class="navlinks">
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Proceso</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#nosotros">Nosotros</a>
+      <a href="#quienes-somos">Nosotros</a>
       <a href="#contacto" class="btn btn-amber">Cotizar proyecto</a>
     </div>
   </nav>
@@ -260,12 +351,11 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-inner">
-      <div class="eyebrow">Fabricación · Montaje · Ingeniería metálica</div>
+      <div class="eyebrow">Fabricación · Montaje · Ingeniería Metálica · Mantenimiento Metalmecánico Industrial</div>
       <h1>La fuerza del <em>acero</em>, la precisión de la ingeniería.</h1>
-      <p>Diseñamos, fabricamos y montamos naves industriales y arcotechos (techos curvos autoportantes) en Morelos. Un mismo equipo del plano al montaje final.</p>
+      <p>Diseñamos, fabricamos y montamos naves industriales, arcotechos (techos curvos autoportantes) y brindamos mantenimiento industrial especializado en Morelos.</p>
       <div class="hero-ctas">
         <a href="#contacto" class="btn btn-amber">Solicitar cotización</a>
-        <a href="#proyectos" class="btn btn-outline">Ver proyectos</a>
       </div>
       <div class="hero-badges">
         <div>
@@ -290,32 +380,55 @@
     <div class="section-head reveal">
       <div class="eyebrow">Qué construimos</div>
       <h2>Una solución para cada tipo de claro</h2>
-      <p>Estructura primaria, secundaria y cubierta, pensadas para tu uso específico y tu terreno.</p>
+      <p>Estructura primaria, secundaria, cubiertas y mantenimiento, pensados para tu uso específico y tu terreno.</p>
     </div>
     <div class="service-grid reveal">
-      <div class="service-card featured">
-        <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6"/><path d="M2 18H22" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h3>Arcotechos</h3>
-        <p>Techos curvos autoportantes en sistema atornillado. Cubren claros amplios sin columnas centrales ni estructura de soporte interna.</p>
-        <span class="spec">NUESTRA ESPECIALIDAD</span>
+      <div class="service-card featured" onclick="openGallery('ipr')" title="Ver fotos de Estructuras metálicas (IPR)">
+        <div>
+          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6"/><path d="M3 12H21" stroke="currentColor" stroke-width="1.6"/></svg>
+          <h3>Estructuras metálicas (IPR)</h3>
+          <p>Diseño, fabricación y montaje de marcos de acero IPR (pesadas y ligeras) calculados para plantas, naves y naves de almacenamiento.</p>
+        </div>
+        <div class="card-footer-action">
+          <span class="spec">IPR PESADAS Y LIGERAS</span>
+          <span class="action-link">Ver fotos →</span>
+        </div>
       </div>
-      <div class="service-card">
-        <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6"/><path d="M3 12H21" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h3>Naves industriales</h3>
-        <p>Estructura completa para plantas, bodegas y centros de almacenaje, con marcos de acero calculados para tu carga y uso.</p>
-        <span class="spec">DISEÑO A MEDIDA</span>
+
+      <div class="service-card" onclick="openGallery('angulo')" title="Ver fotos de Estructuras metálicas (Ángulo)">
+        <div>
+          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 20L10 4L14 14L20 4" stroke="currentColor" stroke-width="1.6"/></svg>
+          <h3>Estructuras metálicas (Ángulo)</h3>
+          <p>Estructuras ligeras, armaduras y marimbas a base de perfiles de ángulo para techados, cobertizos, soportes y naves.</p>
+        </div>
+        <div class="card-footer-action">
+          <span class="spec">ARMADURAS Y ÁNGULO</span>
+          <span class="action-link">Ver fotos →</span>
+        </div>
       </div>
-      <div class="service-card">
-        <svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.6"/><path d="M4 12H20" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h3>Techos y cubiertas</h3>
-        <p>Sistemas de cubierta por largueros para naves, patios y áreas de maniobra, con opción termoacústica.</p>
-        <span class="spec">LÁMINA CALIBRE INDUSTRIAL</span>
+
+      <div class="service-card" onclick="openGallery('losacero')" title="Ver fotos de Prefabricación con IPR y Losacero">
+        <div>
+          <svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.6"/><path d="M4 12H20" stroke="currentColor" stroke-width="1.6"/></svg>
+          <h3>Prefabricación con IPR y Losacero</h3>
+          <p>Sistemas de entrepisos, mezzanines y losacero integrados a perfiles IPR habilitados y modulados desde taller.</p>
+        </div>
+        <div class="card-footer-action">
+          <span class="spec">PREFABRICACIÓN Y LOSACERO</span>
+          <span class="action-link">Ver fotos →</span>
+        </div>
       </div>
-      <div class="service-card">
-        <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 20L10 4L14 14L20 4" stroke="currentColor" stroke-width="1.6"/></svg>
-        <h3>Estructuras a medida</h3>
-        <p>Marquesinas, cobertizos, mezzanines y soluciones especiales diseñadas para tu proceso u operación.</p>
-        <span class="spec">PROYECTO A MEDIDA</span>
+
+      <div class="service-card" onclick="openGallery('arcotechos')" title="Ver fotos de Arcotechos">
+        <div>
+          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6"/><path d="M2 18H22" stroke="currentColor" stroke-width="1.6"/></svg>
+          <h3>Arcotechos</h3>
+          <p>Techos curvos autoportantes en sistemas Superspan y 3 valles atornillable. Cubren claros amplios sin columnas centrales.</p>
+        </div>
+        <div class="card-footer-action">
+          <span class="spec">SUPERSPAN Y 3 VALLES ATORNILLABLE</span>
+          <span class="action-link">Ver fotos →</span>
+        </div>
       </div>
     </div>
   </div>
@@ -331,57 +444,77 @@
     <div class="process-list reveal">
       <div class="process-item">
         <span class="idx">01</span>
-        <div><h3>Levantamiento y diseño</h3><p>Visitamos el terreno, entendemos tu proyecto y te proponemos la solución estructural adecuada para tu claro y presupuesto.</p></div>
+        <h3>Levantamiento y diseño</h3>
+        <p>Visitamos el terreno y proponemos la solución estructural calculada a tu claro y presupuesto.</p>
       </div>
       <div class="process-item">
         <span class="idx">02</span>
-        <div><h3>Fabricación</h3><p>Corte, habilitado y armado de piezas en planta, con control dimensional antes de salir a obra.</p></div>
+        <h3>Fabricación</h3>
+        <p>Corte, habilitado y armado con control dimensional antes de salir a obra.</p>
       </div>
       <div class="process-item">
         <span class="idx">03</span>
-        <div><h3>Montaje en obra</h3><p>Izaje y ensamble con cuadrilla propia, cuidando tiempos y seguridad en cada jornada.</p></div>
+        <h3>Montaje en obra</h3>
+        <p>Izaje y ensamble con cuadrilla propia, cuidando tiempos y seguridad.</p>
       </div>
       <div class="process-item">
         <span class="idx">04</span>
-        <div><h3>Entrega</h3><p>Revisión final contigo antes de dar por terminado el proyecto.</p></div>
+        <h3>Entrega</h3>
+        <p>Revisión final contigo antes de dar por entregado el proyecto.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="projects" id="proyectos">
+<section id="quienes-somos">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Proyectos</div>
-      <h2>Trabajo entregado en campo</h2>
-      <p>Naves y arcotechos fabricados y montados por SAG Estructuras.</p>
+      <div class="eyebrow">Quiénes somos</div>
+      <h2>Estructuras con propósito, no solo acero</h2>
+      <p>Lo que nos mueve a diseñar, fabricar y montar cada proyecto.</p>
     </div>
-    <div class="proj-grid reveal">
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-arcotecho-interior.jpg" alt="Interior de arcotecho, techo curvo autoportante"></div>
-        <div class="proj-body"><span class="tag">Arcotechos</span><h3>Techo curvo autoportante</h3><p>Interior de nave con cubierta en arco, claro amplio sin columnas centrales.</p></div>
+    <div class="mv-grid reveal">
+      <div class="mv-card">
+        <div class="eyebrow">Misión</div>
+        <p>Construir sueños y convertir proyectos en realidades mediante el diseño, fabricación y montaje de estructuras metálicas de alta calidad, integrando ingeniería, innovación, precisión y compromiso humano.</p>
+        <p>Trabajamos para ofrecer soluciones sólidas, seguras y eficientes que superen las expectativas de nuestros clientes, con responsabilidad, tecnología y pasión por lo que hacemos.</p>
       </div>
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-nave-industrial.jpg" alt="Nave industrial en montaje, estructura de acero"></div>
-        <div class="proj-body"><span class="tag">Naves industriales</span><h3>Estructura primaria en montaje</h3><p>Marcos de acero para nave industrial, previo a colocación de cubierta.</p></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-arcotecho-obra.jpg" alt="Arcotecho montado sobre muro de block"></div>
-        <div class="proj-body"><span class="tag">Arcotechos</span><h3>Arcotecho sobre obra civil</h3><p>Cubierta curva integrada a muros de block, lista para cerramientos.</p></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-estructura-medida.jpg" alt="Estructura metálica tipo cobertizo a medida"></div>
-        <div class="proj-body"><span class="tag">Estructuras a medida</span><h3>Cobertizo estructural</h3><p>Estructura abierta a dos aguas para resguardo de vehículos y maniobras.</p></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-montaje-curvo.jpg" alt="Trabajadores instalando lámina curva de arcotecho"></div>
-        <div class="proj-body"><span class="tag">Montaje</span><h3>Instalación de lámina curva</h3><p>Cuadrilla propia colocando el sistema de cubierta en sitio.</p></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-thumb"><img src="assets/img/proyecto-arcotecho-nave.jpg" alt="Nave con techo tipo arcotecho, uso industrial"></div>
-        <div class="proj-body"><span class="tag">Arcotechos</span><h3>Nave con cubierta en arco</h3><p>Claro amplio para operación industrial, sin estructura de soporte interna.</p></div>
+      <div class="mv-card">
+        <div class="eyebrow">Visión</div>
+        <p>Ser una empresa líder y referente en fabricación de estructuras metálicas, reconocida por su innovación, calidad, seguridad y capacidad para transformar grandes ideas en proyectos que trasciendan.</p>
+        <p>Que cada estructura que construyamos represente confianza, progreso y nuevas posibilidades para las personas, las empresas y las comunidades.</p>
       </div>
     </div>
+    <div class="pillars reveal">
+      <div class="pillar"><h3>Construyendo sueños</h3></div>
+      <div class="pillar"><h3>Innovando soluciones</h3></div>
+      <div class="pillar"><h3>Avanzando juntos</h3></div>
+    </div>
+
+    <div class="decalogo-block reveal">
+      <div class="decalogo-head">
+        <span class="eyebrow" style="margin:0;">Diez principios detrás de cada proyecto</span>
+        <span class="lbl">Nuestra Filosofía</span>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><span class="num">01</span><h3>Trabajo en equipo</h3></div>
+        <div class="value-card"><span class="num">02</span><h3>Compañerismo y respeto</h3></div>
+        <div class="value-card"><span class="num">03</span><h3>Compromiso</h3></div>
+        <div class="value-card"><span class="num">04</span><h3>Planeación y cumplimiento</h3></div>
+        <div class="value-card"><span class="num">05</span><h3>Calidad y excelencia</h3></div>
+        <div class="value-card"><span class="num">06</span><h3>Eficiencia y confiabilidad</h3></div>
+        <div class="value-card"><span class="num">07</span><h3>Innovación</h3></div>
+        <div class="value-card"><span class="num">08</span><h3>Seguridad y profesionalismo</h3></div>
+        <div class="value-card"><span class="num">09</span><h3>Responsabilidad ambiental</h3></div>
+        <div class="value-card"><span class="num">10</span><h3>Orientación al cliente</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mantra">
+  <div class="wrap">
+    <p><strong>Construyendo</strong> sueños. <strong>Innovando</strong> soluciones. <strong>Avanzando</strong> juntos.</p>
   </div>
 </section>
 
@@ -412,6 +545,24 @@
         <h3>Un solo equipo responsable</h3>
         <p>Del levantamiento al montaje final, sin intermediarios entre tú y quien construye.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Nuestra promesa</div>
+      <h2>No solo fabricamos acero</h2>
+    </div>
+    <div class="promise-lines reveal">
+      <p>Planeamos antes de construir.</p>
+      <p>Diseñamos antes de fabricar.</p>
+      <p>Cuidamos antes de mantener.</p>
+      <p>Innovamos antes de quedarnos atrás.</p>
+      <p>Trabajamos en equipo para alcanzar objetivos.</p>
+      <p>Y avanzamos junto con nuestros clientes.</p>
+      <p class="close">Cada estructura representa nuestra capacidad. Cada proyecto, nuestro compromiso. Cada mantenimiento, nuestra confiabilidad.</p>
     </div>
   </div>
 </section>
@@ -454,15 +605,15 @@
         <div><label for="tel">Teléfono</label><input id="tel" type="tel" required></div>
         <div><label for="tipo">Tipo de proyecto</label>
           <select id="tipo">
-            <option>Arcotecho</option>
-            <option>Nave industrial</option>
-            <option>Techo / cubierta</option>
-            <option>Estructura a medida</option>
+            <option>Estructuras metálicas (IPR)</option>
+            <option>Estructuras metálicas (Ángulo)</option>
+            <option>Prefabricación con IPR y Losacero</option>
+            <option>Arcotechos (Superspan y 3 valles)</option>
             <option>Otro</option>
           </select>
         </div>
       </div>
-      <div><label for="msg">Cuéntanos brevemente qué necesitas</label><textarea id="msg" placeholder="Ej. Arcotecho de 15x20m para bodega, terreno en Cuernavaca..."></textarea></div>
+      <div><label for="msg">Cuéntanos brevemente qué necesitas</label><textarea id="msg" placeholder="Ej. Arcotecho Superspan de 15x20m para bodega, nave IPR en Cuernavaca..."></textarea></div>
       <button class="btn btn-amber submit-btn" type="submit">Enviar por WhatsApp</button>
       <p class="form-note">Al enviar se abre WhatsApp con tu mensaje ya redactado.</p>
     </form>
@@ -478,6 +629,34 @@
     <div class="fine mono">© 2026 SAG Estructuras · Tel. <a href="tel:+527774346760">777 434 67 60</a></div>
   </div>
 </footer>
+
+<!-- Modal Pasarela de Imágenes -->
+<div class="modal-overlay" id="galleryModal" onclick="closeGalleryOnOverlay(event)">
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title">
+        <span id="modalCategoryTag">ARCOTECHOS</span>
+        <h4 id="modalTitleText" style="margin:0; font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:1.05rem;">Galería de Proyectos</h4>
+      </div>
+      <button class="modal-close" onclick="closeGallery()" aria-label="Cerrar galería">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <button class="modal-nav prev" onclick="changeSlide(-1)" aria-label="Imagen anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <img id="modalImg" src="" alt="Muestra de proyecto">
+      <button class="modal-nav next" onclick="changeSlide(1)" aria-label="Imagen siguiente">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-caption" id="modalCaption">Descripción de la imagen</div>
+      <div class="modal-counter" id="modalCounter">1 / 5</div>
+    </div>
+  </div>
+</div>
 
 <script>
   // Scroll reveal
@@ -503,6 +682,95 @@
 
     const url = `https://wa.me/527774346760?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
+  });
+
+  // Modal Pasarela de Imágenes
+  const galleries = {
+    ipr: {
+      tag: 'ESTRUCTURAS METÁLICAS (IPR)',
+      title: 'Perfiles IPR Pesados y Ligeros',
+      items: [
+        { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Marcos principales de acero IPR para nave industrial' },
+        { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Estructura primaria terminada previa a colocación de cubierta' },
+        { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Montaje estructural de alta resistencia para almacenamiento' }
+      ]
+    },
+    angulo: {
+      tag: 'ESTRUCTURAS METÁLICAS (ÁNGULO)',
+      title: 'Armaduras y Perfiles de Ángulo',
+      items: [
+        { src: 'assets/img/proyecto-estructura-medida.jpg', caption: 'Estructura ligera a dos aguas en perfiles de ángulo' },
+        { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Fabricación y ensamble de marimbas y soportes de ángulo' }
+      ]
+    },
+    losacero: {
+      tag: 'PREFABRICACIÓN CON IPR Y LOSACERO',
+      title: 'Sistemas Prefabricados y Losacero',
+      items: [
+        { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Habilitado e integración de losacero sobre trabes IPR' },
+        { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Módulos prefabricados para entrepisos y naves industriales' },
+        { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Armado rápido en sitio de losacero con perfiles IPR' }
+      ]
+    },
+    arcotechos: {
+      tag: 'ARCOTECHOS',
+      title: 'Sistemas Superspan y 3 Valles Atornillable',
+      items: [
+        { src: 'assets/img/proyecto-arcotecho-interior.jpg', caption: 'Interior de nave con cubierta curvilínea Superspan autoportante' },
+        { src: 'assets/img/proyecto-arcotecho-obra.jpg', caption: 'Sistema de 3 valles atornillable integrado a muro de block' },
+        { src: 'assets/img/proyecto-arcotecho-nave.jpg', caption: 'Nave industrial completa con cubierta curvo autoportante' },
+        { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Montaje de lámina con cuadrilla propia en campo' },
+        { src: 'assets/img/hero-arcotecho-montaje.jpg', caption: 'Izaje y rolado en sitio de perfiles arcotecho' }
+      ]
+    }
+  };
+
+  let currentGalleryKey = 'arcotechos';
+  let currentSlideIndex = 0;
+
+  function openGallery(key) {
+    if(!galleries[key]) return;
+    currentGalleryKey = key;
+    currentSlideIndex = 0;
+    updateModalContent();
+    document.getElementById('galleryModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    document.getElementById('galleryModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeGalleryOnOverlay(e) {
+    if (e.target.id === 'galleryModal') {
+      closeGallery();
+    }
+  }
+
+  function changeSlide(direction) {
+    const items = galleries[currentGalleryKey].items;
+    currentSlideIndex = (currentSlideIndex + direction + items.length) % items.length;
+    updateModalContent();
+  }
+
+  function updateModalContent() {
+    const gallery = galleries[currentGalleryKey];
+    const item = gallery.items[currentSlideIndex];
+    document.getElementById('modalCategoryTag').textContent = gallery.tag;
+    document.getElementById('modalTitleText').textContent = gallery.title;
+    document.getElementById('modalImg').src = item.src;
+    document.getElementById('modalImg').alt = item.caption;
+    document.getElementById('modalCaption').textContent = item.caption;
+    document.getElementById('modalCounter').textContent = `${currentSlideIndex + 1} / ${gallery.items.length}`;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('galleryModal');
+    if (!modal || !modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeGallery();
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
   });
 </script>
 
