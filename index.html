@@ -1,778 +1,2191 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAG Estructuras — Naves industriales y arcotechos en Morelos</title>
-<meta name="description" content="Fabricación, montaje e ingeniería metálica. Especialistas en arcotechos y naves industriales en Morelos. La fuerza del acero, la precisión de la ingeniería.">
-<link rel="icon" href="assets/logo/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --steel-dark:#0a1420;
-    --steel-charcoal:#0f1c2e;
-    --steel-line:#26374e;
-    --paper:#e7ebf1;
-    --white:#f6f8fa;
-    --amber:#ff7a2e;
-    --amber-dim:#d9631c;
-    --blueprint:#4f7fb0;
-    --gray:#8d97a5;
-    --radius:2px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--steel-dark);
-    color:var(--paper);
-    font-family:'Inter',sans-serif;
-    line-height:1.5;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,.display{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    letter-spacing:0.02em;
-    font-weight:600;
-    color:var(--white);
-  }
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  img,svg{display:block;max-width:100%;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
-  ::selection{background:var(--amber);color:var(--steel-dark);}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAG Estructuras — Naves industriales y arcotechos en Morelos</title>
+  <meta name="description"
+    content="Fabricación, montaje e ingeniería metálica. Especialistas en arcotechos y naves industriales en Morelos. La fuerza del acero, la precisión de la ingeniería.">
+  <link rel="icon" href="assets/logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --steel-dark: #0a1420;
+      --steel-charcoal: #0f1c2e;
+      --steel-line: #26374e;
+      --paper: #e7ebf1;
+      --white: #f6f8fa;
+      --amber: #ff7a2e;
+      --amber-dim: #d9631c;
+      --blueprint: #4f7fb0;
+      --gray: #8d97a5;
+      --radius: 2px;
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important;}
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(10,20,32,0.9);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--steel-line);
-  }
-  nav{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px 32px;max-width:1160px;margin:0 auto;
-  }
-  .logo{
-    display:flex;align-items:center;gap:12px;
-    font-family:'Oswald',sans-serif;font-weight:700;
-    font-size:1.1rem;letter-spacing:0.04em;color:var(--white);
-  }
-  .logo img{width:44px;height:auto;flex-shrink:0;}
-  .navlinks{display:flex;gap:34px;align-items:center;}
-  .navlinks a{
-    font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;
-    color:var(--gray);transition:color .2s;
-  }
-  .navlinks a:hover{color:var(--amber);}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 22px;font-size:0.8rem;text-transform:uppercase;
-    letter-spacing:0.08em;font-weight:600;border-radius:var(--radius);
-    border:1px solid transparent;cursor:pointer;transition:all .2s;
-  }
-  .btn-amber{background:var(--amber);color:var(--steel-dark);}
-  .btn-amber:hover{background:var(--white);}
-  .btn-outline{border-color:var(--steel-line);color:var(--paper);}
-  .btn-outline:hover{border-color:var(--amber);color:var(--amber);}
-  .navlinks .btn{padding:10px 18px;}
-  .navlinks a.btn-amber{color:var(--steel-dark);}
-  .navlinks a.btn-amber:hover{color:var(--steel-dark);}
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    min-height:100vh;display:flex;align-items:center;position:relative;
-    padding:150px 0 90px;
-    background:
-      linear-gradient(180deg, rgba(10,14,20,0.55) 0%, rgba(8,12,18,0.82) 55%, var(--steel-dark) 100%),
-      url('assets/img/hero-arcotecho-montaje.jpg') center 38%/cover no-repeat;
-  }
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
-    color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;
-    display:flex;align-items:center;gap:10px;margin-bottom:20px;
-  }
-  .eyebrow::before{content:'';width:28px;height:1px;background:var(--amber);}
-  .hero-inner{max-width:640px;}
-  .hero h1{
-    font-size:clamp(2.4rem, 5vw, 4rem);line-height:1.04;margin-bottom:22px;
-    text-shadow:0 2px 24px rgba(0,0,0,0.35);
-  }
-  .hero h1 em{font-style:normal;color:var(--amber);}
-  .hero p{
-    color:var(--paper);opacity:0.92;font-size:1.08rem;max-width:480px;margin-bottom:34px;
-  }
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px;}
-  .hero-badges{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.18);padding-top:22px;}
-  .hero-badges div{
-    display:flex;align-items:center;gap:10px;padding:4px 28px 4px 0;margin-right:28px;
-    border-right:1px solid rgba(255,255,255,0.14);
-  }
-  .hero-badges div:last-child{border-right:none;}
-  .hero-badges svg{width:20px;height:20px;color:var(--amber);flex-shrink:0;}
-  .hero-badges .lbl{font-size:0.82rem;color:var(--white);letter-spacing:0.01em;}
+    body {
+      background: var(--steel-dark);
+      color: var(--paper);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:110px 0;position:relative;}
-  .section-head{max-width:640px;margin-bottom:56px;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-bottom:14px;}
-  .section-head p{color:var(--gray);font-size:1rem;max-width:520px;}
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      color: var(--white);
+    }
 
-  /* ---------- SERVICIOS ---------- */
-  .services{background:var(--steel-charcoal);}
-  .service-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--steel-line);border:1px solid var(--steel-line);
-  }
-  .service-card{
-    background:var(--steel-charcoal);padding:34px 26px;
-    transition:all .25s;position:relative;overflow:hidden;
-    cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;
-  }
-  .service-card.featured{background:#142338;}
-  .service-card:hover{background:#182a40;transform:translateY(-2px);}
-  .service-card::before{
-    content:'';position:absolute;top:0;left:0;width:0;height:3px;
-    background:var(--amber);transition:width .3s;
-  }
-  .service-card:hover::before{width:100%;}
-  .service-card.featured::before{width:100%;}
-  .service-card .icn{width:38px;height:38px;margin-bottom:22px;color:var(--amber);}
-  .service-card h3{font-size:1.05rem;margin-bottom:10px;letter-spacing:0.01em;}
-  .service-card p{color:var(--gray);font-size:0.88rem;margin-bottom:16px;}
-  .card-footer-action{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-top:auto;padding-top:14px;border-top:1px dashed rgba(255,255,255,0.08);
-  }
-  .service-card .spec{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.68rem;color:var(--amber-dim);
-  }
-  .service-card .action-link{
-    font-family:'JetBrains Mono',monospace;font-size:0.75rem;
-    color:var(--amber);font-weight:500;transition:transform .2s;
-  }
-  .service-card:hover .action-link{transform:translateX(3px);}
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-  /* ---------- PROCESO ---------- */
-  .process-list{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--steel-line);border:1px solid var(--steel-line);
-  }
-  .process-item{
-    background:var(--steel-dark);padding:26px 20px;
-    display:flex;flex-direction:column;align-items:flex-start;
-  }
-  .process-item .idx{
-    font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--amber);
-    background:rgba(255,122,46,0.1);padding:4px 10px;border:1px solid rgba(255,122,46,0.3);
-    border-radius:var(--radius);margin-bottom:14px;font-weight:600;
-  }
-  .process-item h3{font-size:1.05rem;margin-bottom:6px;}
-  .process-item p{color:var(--gray);font-size:0.84rem;line-height:1.45;}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  /* ---------- WHY ---------- */
-  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);}
-  .why-card{background:var(--steel-dark);padding:32px 24px;text-align:left;}
-  .why-card svg{width:30px;height:30px;color:var(--amber);margin-bottom:18px;}
-  .why-card h3{font-size:0.98rem;margin-bottom:8px;letter-spacing:0.01em;}
-  .why-card p{font-size:0.85rem;color:var(--gray);}
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
 
-  /* ---------- MISION / VISION ---------- */
-  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel-line);border:1px solid var(--steel-line);}
-  .mv-card{background:var(--steel-dark);padding:40px 36px;}
-  .mv-card .eyebrow{margin-bottom:16px;}
-  .mv-card p{color:var(--gray);font-size:0.96rem;max-width:480px;}
-  .mv-card p + p{margin-top:14px;}
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
-  /* ---------- PILARES (filosofía corporativa) ---------- */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--steel-line);border-bottom:1px solid var(--steel-line);margin-top:1px;}
-  .pillar{background:var(--steel-charcoal);padding:22px 24px;text-align:center;}
-  .pillar h3{font-size:1.05rem;margin-bottom:0;color:var(--amber);}
+    ::selection {
+      background: var(--amber);
+      color: var(--steel-dark);
+    }
 
-  /* ---------- DECÁLOGO DE VALORES (tabla compacta) ---------- */
-  .decalogo-block{margin-top:1px;background:var(--steel-line);border-bottom:1px solid var(--steel-line);}
-  .decalogo-head{
-    background:var(--steel-charcoal);padding:14px 24px;border-bottom:1px solid var(--steel-line);
-    display:flex;justify-content:space-between;align-items:center;
-  }
-  .decalogo-head .lbl{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;}
-  .values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--steel-line);}
-  .value-card{background:var(--steel-dark);padding:16px 14px;display:flex;align-items:center;gap:10px;}
-  .value-card .num{
-    font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--amber);
-    background:rgba(255,122,46,0.12);padding:2px 6px;border-radius:var(--radius);flex-shrink:0;
-  }
-  .value-card h3{
-    font-size:0.84rem;margin:0;letter-spacing:0.01em;color:var(--paper);
-    font-family:'Inter',sans-serif;font-weight:600;text-transform:none;
-  }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
 
-  /* ---------- MANTRA (frase institucional) ---------- */
-  .mantra{background:var(--steel-dark);border-bottom:1px solid var(--steel-line);padding:54px 0;text-align:center;}
-  .mantra p{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:clamp(1.15rem,2.6vw,1.85rem);letter-spacing:0.02em;color:var(--white);}
-  .mantra strong{color:var(--amber);font-weight:600;}
+    /* ---------- NAV ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 20, 32, 0.9);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--steel-line);
+    }
 
-  /* ---------- PROMESA ---------- */
-  .promise{background:var(--steel-charcoal);}
-  .promise-lines{max-width:640px;}
-  .promise-lines p{border-left:2px solid var(--amber);padding-left:18px;margin-bottom:14px;color:var(--paper);font-size:1rem;}
-  .promise-lines p.close{border-left-color:var(--steel-line);color:var(--gray);font-style:italic;margin-top:26px;}
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
 
-  /* ---------- CONTACT ---------- */
-  .contact{background:var(--steel-charcoal);}
-  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;}
-  .contact-info h2{font-size:2rem;margin-bottom:16px;}
-  .contact-info p{color:var(--gray);margin-bottom:30px;max-width:400px;}
-  .info-row{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
-  .info-row .ico{width:20px;height:20px;color:var(--amber);flex-shrink:0;margin-top:2px;}
-  .info-row .lbl{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--steel-line);}
-  .info-row .val{font-size:0.95rem;color:var(--paper);}
-  .info-row a.val:hover{color:var(--amber);}
-  .info-row .val.pending{color:var(--gray);font-style:italic;}
-  .quick-contact{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
 
-  form{display:flex;flex-direction:column;gap:16px;}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray);margin-bottom:6px;display:block;}
-  input,select,textarea{
-    width:100%;background:var(--steel-dark);border:1px solid var(--steel-line);
-    color:var(--white);padding:13px 14px;font-family:'Inter',sans-serif;font-size:0.9rem;
-    border-radius:var(--radius);transition:border-color .2s;
-  }
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);}
-  textarea{resize:vertical;min-height:100px;}
-  .submit-btn{margin-top:6px;align-self:flex-start;}
-  .form-note{font-size:0.76rem;color:var(--steel-line);margin-top:-4px;}
+    .logo img {
+      width: 44px;
+      height: auto;
+      flex-shrink: 0;
+    }
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    border-top:1px solid var(--steel-line);padding:38px 0;
-  }
-  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-  .footer-logo{display:flex;align-items:center;gap:12px;}
-  .footer-logo img{width:34px;height:auto;}
-  .footer-logo span{font-family:'Oswald',sans-serif;font-size:0.95rem;letter-spacing:0.04em;color:var(--white);}
-  footer .fine{font-size:0.78rem;color:var(--steel-line);}
-  footer .fine a{color:var(--gray);}
-  footer .fine a:hover{color:var(--amber);}
+    .navlinks {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+    }
 
-  /* ---------- MODAL GALERÍA ---------- */
-  .modal-overlay{
-    position:fixed;top:0;left:0;right:0;bottom:0;
-    background:rgba(6,10,16,0.92);backdrop-filter:blur(8px);
-    z-index:999;display:flex;align-items:center;justify-content:center;
-    opacity:0;pointer-events:none;transition:opacity .3s ease;
-    padding:20px;
-  }
-  .modal-overlay.active{opacity:1;pointer-events:auto;}
-  .modal-container{
-    background:var(--steel-charcoal);border:1px solid var(--steel-line);
-    border-radius:var(--radius);max-width:920px;width:100%;
-    position:relative;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.6);
-    display:flex;flex-direction:column;
-  }
-  .modal-header{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:16px 24px;border-bottom:1px solid var(--steel-line);
-    background:var(--steel-dark);
-  }
-  .modal-title{font-size:1.1rem;color:var(--white);display:flex;align-items:center;gap:10px;}
-  .modal-title span{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--amber);background:rgba(255,122,46,0.12);padding:3px 8px;border-radius:var(--radius);}
-  .modal-close{
-    background:none;border:none;color:var(--gray);cursor:pointer;
-    padding:6px;display:flex;align-items:center;justify-content:center;
-    transition:color .2s;
-  }
-  .modal-close:hover{color:var(--amber);}
-  .modal-body{position:relative;background:#000;display:flex;align-items:center;justify-content:center;min-height:360px;max-height:65vh;}
-  .modal-body img{max-width:100%;max-height:65vh;object-fit:contain;}
-  .modal-nav{
-    position:absolute;top:50%;transform:translateY(-50%);
-    background:rgba(10,20,32,0.75);border:1px solid var(--steel-line);
-    color:var(--white);width:44px;height:44px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;cursor:pointer;
-    transition:all .2s;z-index:2;
-  }
-  .modal-nav:hover{background:var(--amber);color:var(--steel-dark);border-color:var(--amber);}
-  .modal-nav.prev{left:16px;}
-  .modal-nav.next{right:16px;}
-  .modal-footer{
-    padding:14px 24px;background:var(--steel-dark);border-top:1px solid var(--steel-line);
-    display:flex;justify-content:space-between;align-items:center;gap:16px;
-  }
-  .modal-caption{font-size:0.88rem;color:var(--paper);}
-  .modal-counter{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--gray);flex-shrink:0;}
+    .navlinks a {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      transition: color .2s;
+    }
 
-  @media (max-width:900px){
-    .service-grid{grid-template-columns:repeat(2,1fr);}
-    .process-list{grid-template-columns:repeat(2,1fr);}
-    .why-grid{grid-template-columns:repeat(2,1fr);}
-    .contact-grid{grid-template-columns:1fr;}
-    .navlinks{display:none;}
-    .hero{background-position:center 30%;}
-    .row2{grid-template-columns:1fr;}
-    .mv-grid{grid-template-columns:1fr;}
-    .pillars{grid-template-columns:1fr;}
-    .values-grid{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width:560px){
-    .service-grid{grid-template-columns:1fr;}
-    .process-list{grid-template-columns:1fr;}
-    .values-grid{grid-template-columns:1fr;}
-  }
-</style>
+    .navlinks a:hover {
+      color: var(--amber);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .btn-amber {
+      background: var(--amber);
+      color: var(--steel-dark);
+    }
+
+    .btn-amber:hover {
+      background: var(--white);
+    }
+
+    .btn-outline {
+      border-color: var(--steel-line);
+      color: var(--paper);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .navlinks .btn {
+      padding: 10px 18px;
+    }
+
+    .navlinks a.btn-amber {
+      color: var(--steel-dark);
+    }
+
+    .navlinks a.btn-amber:hover {
+      color: var(--steel-dark);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 150px 0 90px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(10, 14, 20, 0.65) 0%, rgba(8, 12, 18, 0.85) 55%, var(--steel-dark) 100%),
+        url('assets/img/hero-arcotecho-montaje.jpg') center 38%/cover no-repeat;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 520px;
+      max-width: 46vw;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 0 30px rgba(255, 122, 46, 0.3));
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--amber);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    .hero-inner {
+      max-width: 640px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.04;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    .hero p {
+      color: var(--paper);
+      opacity: 0.92;
+      font-size: 1.08rem;
+      max-width: 480px;
+      margin-bottom: 34px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      padding-top: 22px;
+    }
+
+    .hero-badges div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 28px 4px 0;
+      margin-right: 28px;
+      border-right: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-badges div:last-child {
+      border-right: none;
+    }
+
+    .hero-badges svg {
+      width: 20px;
+      height: 20px;
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .hero-badges .lbl {
+      font-size: 0.82rem;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 56px;
+    }
+
+    .section-head .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      color: var(--gray);
+      font-size: 1rem;
+      max-width: 520px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- SERVICIOS ---------- */
+    .services {
+      background: var(--steel-charcoal);
+    }
+
+    .construccion-hero-box {
+      background: linear-gradient(135deg, rgba(15, 28, 46, 0.95) 0%, rgba(20, 36, 58, 0.95) 100%);
+      border: 2px solid var(--amber);
+      box-shadow: 0 12px 40px rgba(255, 122, 46, 0.15), inset 0 0 20px rgba(255, 122, 46, 0.05);
+      border-radius: var(--radius);
+      padding: 44px 38px;
+      position: relative;
+    }
+
+    .construccion-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 122, 46, 0.15);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1fr;
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--steel-charcoal);
+      padding: 34px 26px;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-card.featured {
+      background: #142338;
+    }
+
+    .service-card:hover {
+      background: #182a40;
+      transform: translateY(-2px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--amber);
+      transition: width .3s;
+    }
+
+    .service-card:hover::before {
+      width: 100%;
+    }
+
+    .service-card.featured::before {
+      width: 100%;
+    }
+
+    .service-card .icn {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 22px;
+      color: var(--amber);
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+    }
+
+    .card-footer-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .service-card .spec {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--amber-dim);
+    }
+
+    .btn-card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-size: 0.75rem;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      background: var(--amber);
+      color: var(--steel-dark);
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all .2s ease;
+      box-shadow: 0 2px 8px rgba(255, 122, 46, 0.22);
+    }
+
+    .service-card:hover .btn-card-action {
+      background: var(--white);
+      color: var(--steel-dark);
+      transform: scale(1.04);
+    }
+
+    /* ---------- MANTENIMIENTO SECTION ---------- */
+    .mantenimiento-section {
+      background: var(--steel-dark);
+      border-top: 1px solid var(--steel-line);
+      padding: 110px 0;
+    }
+
+    .maint-hero {
+      background:
+        linear-gradient(90deg, rgba(10, 20, 32, 0.95) 0%, rgba(15, 28, 46, 0.85) 60%, rgba(10, 20, 32, 0.7) 100%),
+        url('assets/img/servicios-nave-bg.jpg') center/cover no-repeat;
+      border: 1px solid var(--steel-line);
+      border-radius: var(--radius);
+      padding: 50px 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .maint-hero-text h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin: 10px 0;
+    }
+
+    .maint-hero-text h2 span {
+      color: var(--amber);
+    }
+
+    .maint-subtitle {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.06em;
+      color: var(--paper);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .maint-desc {
+      color: var(--gray);
+      font-size: 0.98rem;
+      max-width: 580px;
+      margin-bottom: 32px;
+    }
+
+    .maint-badges {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 24px;
+    }
+
+    .maint-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .maint-badge svg {
+      width: 26px;
+      height: 26px;
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .maint-badge strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .maint-badge span {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    /* Industries Grid */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .ind-card {
+      position: relative;
+      height: 180px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--steel-line);
+      background: var(--steel-dark);
+    }
+
+    .ind-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+
+    .ind-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .ind-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(10, 14, 20, 0.3) 0%, rgba(8, 12, 18, 0.92) 100%);
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .ind-overlay svg {
+      width: 22px;
+      height: 22px;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    .ind-overlay h3 {
+      font-size: 0.85rem;
+      color: var(--white);
+      line-height: 1.2;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    /* Mantenimiento Services Grid */
+    .maint-services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--steel-line);
+      border: 1px solid var(--steel-line);
+    }
+
+    .maint-svc-card {
+      background: var(--steel-charcoal);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      transition: background .25s, transform .25s;
+    }
+
+    .maint-svc-card:hover {
+      background: #182a40;
+      transform: translateY(-2px);
+    }
+
+    .maint-svc-card.warning-accent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--amber);
+    }
+
+    .maint-svc-card .icn {
+      width: 28px;
+      height: 28px;
+      color: var(--amber);
+    }
+
+    .maint-svc-card h3 {
+      font-size: 0.88rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .maint-svc-card p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+
+    /* Why Mantenimiento Grid */
+    .why-maint-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--steel-line);
+      border: 1px solid var(--steel-line);
+    }
+
+    .why-maint-card {
+      background: var(--steel-charcoal);
+      padding: 26px 20px;
+    }
+
+    .why-maint-card svg {
+      width: 26px;
+      height: 26px;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+
+    .why-maint-card h3 {
+      font-size: 0.88rem;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .why-maint-card p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* Banner CTA Mantenimiento */
+    .maint-cta-banner {
+      background: linear-gradient(135deg, var(--amber) 0%, #e06016 100%);
+      border-radius: var(--radius);
+      padding: 42px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-top: 56px;
+      color: var(--steel-dark);
+    }
+
+    .maint-cta-content h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--steel-dark);
+      margin: 4px 0;
+    }
+
+    .maint-cta-content h2 span {
+      color: var(--white);
+    }
+
+    .maint-cta-content p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--steel-dark);
+      opacity: 0.9;
+    }
+
+    .btn-dark-cta {
+      background: var(--steel-dark);
+      color: var(--white);
+      padding: 14px 28px;
+      font-size: 0.85rem;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      display: inline-block;
+      white-space: nowrap;
+      transition: all .2s;
+    }
+
+    .btn-dark-cta:hover {
+      background: var(--white);
+      color: var(--steel-dark);
+    }
+
+    /* ---------- PROCESO ---------- */
+    .process-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--steel-line);
+      border: 1px solid var(--steel-line);
+    }
+
+    .process-item {
+      background: var(--steel-dark);
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .process-item .idx {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--amber);
+      background: rgba(255, 122, 46, 0.1);
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 122, 46, 0.3);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .process-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .process-item p {
+      color: var(--gray);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    /* ---------- WHY ---------- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--steel-line);
+      border: 1px solid var(--steel-line);
+    }
+
+    .why-card {
+      background: var(--steel-dark);
+      padding: 32px 24px;
+      text-align: left;
+    }
+
+    .why-card svg {
+      width: 30px;
+      height: 30px;
+      color: var(--amber);
+      margin-bottom: 18px;
+    }
+
+    .why-card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .why-card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* ---------- MISION / VISION ---------- */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--steel-line);
+      border: 1px solid var(--steel-line);
+    }
+
+    .mv-card {
+      background: var(--steel-dark);
+      padding: 40px 36px;
+    }
+
+    .mv-card .eyebrow {
+      margin-bottom: 16px;
+    }
+
+    .mv-card p {
+      color: var(--gray);
+      font-size: 0.96rem;
+      max-width: 480px;
+    }
+
+    .mv-card p+p {
+      margin-top: 14px;
+    }
+
+    /* ---------- PILARES (filosofía corporativa) ---------- */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--steel-line);
+      border-bottom: 1px solid var(--steel-line);
+      margin-top: 1px;
+    }
+
+    .pillar {
+      background: var(--steel-charcoal);
+      padding: 22px 24px;
+      text-align: center;
+    }
+
+    .pillar h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0;
+      color: var(--amber);
+    }
+
+    /* ---------- MANTRA (frase institucional) ---------- */
+    .mantra {
+      background: var(--steel-dark);
+      border-bottom: 1px solid var(--steel-line);
+      padding: 54px 0;
+      text-align: center;
+    }
+
+    .mantra p {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(1.15rem, 2.6vw, 1.85rem);
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    .mantra strong {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* ---------- PROMESA ---------- */
+    .promise {
+      background: var(--steel-charcoal);
+    }
+
+    .promise-lines {
+      max-width: 640px;
+    }
+
+    .promise-lines p {
+      border-left: 2px solid var(--amber);
+      padding-left: 18px;
+      margin-bottom: 14px;
+      color: var(--paper);
+      font-size: 1rem;
+    }
+
+    .promise-lines p.close {
+      border-left-color: var(--steel-line);
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 26px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: var(--steel-charcoal);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 60px;
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--gray);
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .info-row .ico {
+      width: 20px;
+      height: 20px;
+      color: var(--amber);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .info-row .lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--steel-line);
+    }
+
+    .info-row .val {
+      font-size: 0.95rem;
+      color: var(--paper);
+    }
+
+    .info-row a.val:hover {
+      color: var(--amber);
+    }
+
+    .info-row .val.pending {
+      color: var(--gray);
+      font-style: italic;
+    }
+
+    .quick-contact {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: var(--steel-dark);
+      border: 1px solid var(--steel-line);
+      color: var(--white);
+      padding: 13px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      border-radius: var(--radius);
+      transition: border-color .2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--amber);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .submit-btn {
+      margin-top: 6px;
+      align-self: flex-start;
+    }
+
+    .form-note {
+      font-size: 0.76rem;
+      color: var(--steel-line);
+      margin-top: -4px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid var(--steel-line);
+      padding: 38px 0;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo img {
+      width: 34px;
+      height: auto;
+    }
+
+    .footer-logo span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+
+    footer .fine {
+      font-size: 0.78rem;
+      color: var(--steel-line);
+    }
+
+    footer .fine a {
+      color: var(--gray);
+    }
+
+    footer .fine a:hover {
+      color: var(--amber);
+    }
+
+    /* ---------- MODAL GALERÍA ---------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(6, 10, 16, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--steel-charcoal);
+      border: 1px solid var(--steel-line);
+      border-radius: var(--radius);
+      max-width: 920px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--steel-line);
+      background: var(--steel-dark);
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-title span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--amber);
+      background: rgba(255, 122, 46, 0.12);
+      padding: 3px 8px;
+      border-radius: var(--radius);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s;
+    }
+
+    .modal-close:hover {
+      color: var(--amber);
+    }
+
+    .modal-body {
+      position: relative;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+      max-height: 65vh;
+    }
+
+    .modal-body img {
+      max-width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10, 20, 32, 0.75);
+      border: 1px solid var(--steel-line);
+      color: var(--white);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 2;
+    }
+
+    .modal-nav:hover {
+      background: var(--amber);
+      color: var(--steel-dark);
+      border-color: var(--amber);
+    }
+
+    .modal-nav.prev {
+      left: 16px;
+    }
+
+    .modal-nav.next {
+      right: 16px;
+    }
+
+    .modal-footer {
+      padding: 14px 24px;
+      background: var(--steel-dark);
+      border-top: 1px solid var(--steel-line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .modal-caption {
+      font-size: 0.88rem;
+      color: var(--paper);
+    }
+
+    .modal-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--gray);
+      flex-shrink: 0;
+    }
+
+    @media (max-width:1100px) {
+      .industries-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .maint-services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .why-maint-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width:900px) {
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navlinks {
+        display: none;
+      }
+
+      .hero {
+        background-position: center 30%;
+      }
+
+      .row2 {
+        grid-template-columns: 1fr;
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:768px) {
+      .maint-badges {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .maint-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-maint-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .maint-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width:560px) {
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-list {
+        grid-template-columns: 1fr;
+      }
+
+      .industries-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .maint-services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-maint-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <nav>
-    <div class="logo">
-      <img src="assets/logo/sag-icon.png" alt="SAG Estructuras">
-      SAG ESTRUCTURAS
-    </div>
-    <div class="navlinks">
-      <a href="#servicios">Servicios</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#quienes-somos">Nosotros</a>
-      <a href="#contacto" class="btn btn-amber">Cotizar proyecto</a>
-    </div>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-inner">
-      <div class="eyebrow">Fabricación · Montaje · Ingeniería Metálica · Mantenimiento Metalmecánico Industrial</div>
-      <h1>La fuerza del <em>acero</em>, la precisión de la ingeniería.</h1>
-      <p>Diseñamos, fabricamos y montamos naves industriales, arcotechos (techos curvos autoportantes) y brindamos mantenimiento industrial especializado en Morelos.</p>
-      <div class="hero-ctas">
-        <a href="#contacto" class="btn btn-amber">Solicitar cotización</a>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="assets/logo/sag-icon.png" alt="SAG Estructuras">
+        SAG ESTRUCTURAS
       </div>
-      <div class="hero-badges">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6"/><path d="M3 12H21" stroke="currentColor" stroke-width="1.6"/></svg>
-          <span class="lbl">Fabricación propia</span>
+      <div class="navlinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#mantenimiento">Mantenimiento</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#quienes-somos">Nosotros</a>
+        <a href="#contacto" class="btn btn-amber">Cotizar proyecto</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img class="hero-watermark" src="assets/logo/sag-icon.png" alt="SAG Estructuras Marca de Agua">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="eyebrow">Fabricación · Montaje · Ingeniería Metálica · Mantenimiento Metalmecánico Industrial</div>
+        <h1>La fuerza del <em>acero</em>, la precisión de la ingeniería.</h1>
+        <p>Diseñamos, fabricamos y montamos naves industriales, arcotechos (techos curvos autoportantes) y brindamos
+          mantenimiento industrial especializado en Morelos.</p>
+        <div class="hero-ctas">
+          <a href="#contacto" class="btn btn-amber">Solicitar cotización</a>
         </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M2 10L12 4L22 10" stroke="currentColor" stroke-width="1.6"/><path d="M4 10V20H20V10" stroke="currentColor" stroke-width="1.6"/></svg>
-          <span class="lbl">Montaje con equipo propio</span>
+        <div class="hero-badges">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6" />
+              <path d="M3 12H21" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            <span class="lbl">Fabricación propia</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M2 10L12 4L22 10" stroke="currentColor" stroke-width="1.6" />
+              <path d="M4 10V20H20V10" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            <span class="lbl">Montaje con equipo propio</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6" />
+              <path d="M2 18H22" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            <span class="lbl">Especialistas en arcotechos</span>
+          </div>
         </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6"/><path d="M2 18H22" stroke="currentColor" stroke-width="1.6"/></svg>
-          <span class="lbl">Especialistas en arcotechos</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <div class="wrap">
+      <div class="construccion-hero-box reveal">
+
+        <div class="section-head" style="margin-bottom:32px;">
+          <div class="eyebrow">Qué construimos</div>
+          <h2>Una solución para cada tipo de claro</h2>
+          <p>Estructura primaria, secundaria, cubiertas y proyectos integrales, pensados para tu uso específico y tu
+            terreno.</p>
         </div>
+        <div class="service-grid">
+          <div class="service-card featured" onclick="openGallery('ipr')"
+            title="Ver fotos de Estructuras metálicas (IPR)">
+            <div>
+              <svg class="icn" viewBox="0 0 24 24" fill="none">
+                <path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6" />
+                <path d="M3 12H21" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+              <h3>Estructuras metálicas (IPR - pesadas y ligeras)</h3>
+              <p>Diseño, fabricación y montaje de marcos de acero IPR (pesadas y ligeras) calculados para plantas, naves
+                y almacenes.</p>
+            </div>
+            <div class="card-footer-action">
+              <span class="spec">IPR PESADAS Y LIGERAS</span>
+              <button class="btn-card-action">Ver fotos <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></button>
+            </div>
+          </div>
+
+          <div class="service-card" onclick="openGallery('angulo')" title="Ver fotos de Estructuras metálicas (Ángulo)">
+            <div>
+              <svg class="icn" viewBox="0 0 24 24" fill="none">
+                <path d="M4 20L10 4L14 14L20 4" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+              <h3>Estructuras metálicas (Ángulo)</h3>
+              <p>Estructuras ligeras, armaduras y marimbas a base de perfiles de ángulo para techados, cobertizos,
+                soportes y naves.</p>
+            </div>
+            <div class="card-footer-action">
+              <span class="spec">ARMADURAS Y ÁNGULO</span>
+              <button class="btn-card-action">Ver fotos <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></button>
+            </div>
+          </div>
+
+          <div class="service-card" onclick="openGallery('losacero')"
+            title="Ver fotos de Prefabricación con IPR y Losacero">
+            <div>
+              <svg class="icn" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.6" />
+                <path d="M4 12H20" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+              <h3>Prefabricación con IPR y Losacero</h3>
+              <p>Sistemas de entrepisos, mezzanines y losacero integrados a perfiles IPR habilitados y modulados desde
+                taller.</p>
+            </div>
+            <div class="card-footer-action">
+              <span class="spec">PREFABRICACIÓN Y LOSACERO</span>
+              <button class="btn-card-action">Ver fotos <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></button>
+            </div>
+          </div>
+
+          <div class="service-card" onclick="openGallery('arcotechos')" title="Ver fotos de Arcotechos">
+            <div>
+              <svg class="icn" viewBox="0 0 24 24" fill="none">
+                <path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6" />
+                <path d="M2 18H22" stroke="currentColor" stroke-width="1.6" />
+              </svg>
+              <h3>Arcotechos (Superspan y 3 valles atornillable)</h3>
+              <p>Techos curvos autoportantes en sistemas Superspan y 3 valles atornillables. Cubren claros amplios sin
+                columnas centrales.</p>
+            </div>
+            <div class="card-footer-action">
+              <span class="spec">SUPERSPAN Y 3 VALLES ATORNILLABLE</span>
+              <button class="btn-card-action">Ver fotos <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN ESPECIALIZADA: MANTENIMIENTO METALMECÁNICO INDUSTRIAL -->
+  <section class="mantenimiento-section" id="mantenimiento">
+    <div class="wrap">
+      <!-- Header Banner -->
+      <div class="maint-hero reveal">
+        <div class="maint-hero-text">
+          <div class="eyebrow">Servicios Especializados</div>
+          <h2>MANTENIMIENTO <span>METALMECÁNICO INDUSTRIAL</span></h2>
+          <p class="maint-subtitle">CONFIABILIDAD QUE MANTIENE TU INDUSTRIA EN MOVIMIENTO</p>
+          <p class="maint-desc">En SAG ESTRUCTURAS mantenemos y optimizamos tus equipos para que operen con máxima
+            eficiencia, seguridad y continuidad operativa.</p>
+
+          <div class="maint-badges">
+            <div class="maint-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <div><strong>SEGURIDAD</strong><span>Primero</span></div>
+            </div>
+            <div class="maint-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg>
+              <div><strong>PRECISIÓN</strong><span>En cada detalle</span></div>
+            </div>
+            <div class="maint-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path
+                  d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+              </svg>
+              <div><strong>EFICIENCIA</strong><span>En cada proceso</span></div>
+            </div>
+            <div class="maint-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <div><strong>EQUIPO</strong><span>Que responde</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Industrias que atendemos -->
+      <div class="maint-block reveal" style="margin-top:56px;">
+        <div class="section-head" style="margin-bottom:32px;">
+          <div class="eyebrow">Sectores Productivos</div>
+          <h2>Industrias que atendemos</h2>
+        </div>
+        <div class="industries-grid">
+          <div class="ind-card" onclick="openGallery('ind_cementera')" style="cursor:pointer;"
+            title="Ver imágenes de Industria Cementera">
+            <img src="assets/img/servicios-nave-bg.jpg" alt="Industria Cementera">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M1 3h15v13H1z" />
+                <path d="M16 8h4l3 3v5h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+              <h3>Industria Cementera</h3>
+            </div>
+          </div>
+          <div class="ind-card" onclick="openGallery('ind_alimentos')" style="cursor:pointer;"
+            title="Ver imágenes de Industria de Alimentos">
+            <img src="assets/img/proyecto-arcotecho-nave.jpg" alt="Industria de Alimentos">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+              <h3>Industria de Alimentos</h3>
+            </div>
+          </div>
+          <div class="ind-card" onclick="openGallery('ind_autopartes')" style="cursor:pointer;"
+            title="Ver imágenes de Industria de Autopartes">
+            <img src="assets/img/proyecto-nave-industrial.jpg" alt="Industria de Autopartes">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path
+                  d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+              <h3>Industria de Autopartes</h3>
+            </div>
+          </div>
+          <div class="ind-card" onclick="openGallery('ind_manufactura')" style="cursor:pointer;"
+            title="Ver imágenes de Plantas de Manufactura">
+            <img src="assets/img/proyecto-nave-interior.jpg" alt="Plantas de Manufactura">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M2 20h20M5 20V8l7-4 7 4v12" />
+                <path d="M9 12h6M9 16h6" />
+              </svg>
+              <h3>Plantas de Manufactura</h3>
+            </div>
+          </div>
+          <div class="ind-card" onclick="openGallery('ind_fabricas')" style="cursor:pointer;"
+            title="Ver imágenes de Fábricas y Procesos">
+            <img src="assets/img/hero-arcotecho-montaje.jpg" alt="Fábricas y Procesos Industriales">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+              <h3>Fábricas y Procesos Industriales</h3>
+            </div>
+          </div>
+          <div class="ind-card" onclick="openGallery('ind_otros')" style="cursor:pointer;"
+            title="Ver imágenes de Otros Sectores">
+            <img src="assets/img/proyecto-estructura-medida.jpg" alt="Otros Sectores Industriales">
+            <div class="ind-overlay">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="19" cy="12" r="1" />
+                <circle cx="5" cy="12" r="1" />
+              </svg>
+              <h3>Otros Sectores Industriales</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuestros Servicios de Mantenimiento Industrial -->
+      <div class="maint-block reveal" style="margin-top:64px;">
+        <div class="section-head" style="margin-bottom:32px;">
+          <div class="eyebrow">Catálogo Especializado</div>
+          <h2>Nuestros Servicios de Mantenimiento Industrial</h2>
+        </div>
+        <div class="maint-services-grid">
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <path d="M9 15l2 2 4-4" />
+            </svg>
+            <h3>Mantenimiento Preventivo</h3>
+            <p>Programas de inspección y servicio para prevenir fallas y alargar la vida útil de tus equipos.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg>
+            <h3>Mantenimiento Correctivo</h3>
+            <p>Atención rápida y efectiva para restablecer la operación y reducir tiempos de paro.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <h3>Inspección y Diagnóstico</h3>
+            <p>Evaluación técnica de equipos y componentes para detectar fallas potenciales.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <h3>Reparación y Sustitución</h3>
+            <p>Reparamos y reemplazamos componentes mecánicos con calidad y precisión garantizada.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <line x1="4" y1="21" x2="4" y2="14" />
+              <line x1="4" y1="10" x2="4" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="3" />
+              <line x1="20" y1="21" x2="20" y2="16" />
+              <line x1="20" y1="12" x2="20" y2="3" />
+              <line x1="1" y1="14" x2="7" y2="14" />
+              <line x1="9" y1="8" x2="15" y2="8" />
+              <line x1="17" y1="16" x2="23" y2="16" />
+            </svg>
+            <h3>Alineación y Montaje de Equipos</h3>
+            <p>Alineación láser, montaje y desmontaje profesional para un funcionamiento óptimo.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="6" width="20" height="12" rx="2" />
+              <path d="M12 12h.01" />
+            </svg>
+            <h3>Mantenimiento de Transportadores</h3>
+            <p>Servicio especializado en bandas, rodillos, chumaceras y sistemas de transporte.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M3 21V8L12 3L21 8V21" />
+              <path d="M3 12H21" />
+            </svg>
+            <h3>Estructuras y Componentes Mecánicos</h3>
+            <p>Mantenimiento de estructuras metálicas, sistemas de soporte y componentes mecánicos.</p>
+          </div>
+          <div class="maint-svc-card warning-accent">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <h3>Atención de Fallas Críticas</h3>
+            <p>Respuesta inmediata ante fallas para minimizar impactos en la producción y seguridad.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
+            <h3>Optimización y Mejora Continua</h3>
+            <p>Propuestas de mejora para aumentar eficiencia, confiabilidad y vida útil de tus equipos.</p>
+          </div>
+          <div class="maint-svc-card">
+            <svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <h3>Servicios Personalizados</h3>
+            <p>Soluciones a la medida según tus necesidades, procesos y objetivos industriales.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ¿Por qué elegir a SAG Estructuras? -->
+      <div class="maint-block reveal" style="margin-top:64px;">
+        <div class="section-head" style="margin-bottom:32px;">
+          <div class="eyebrow">Ventajas Competitivas</div>
+          <h2>¿Por qué elegir a SAG Estructuras?</h2>
+          <p>Integramos ingeniería, fabricación y mantenimiento para ofrecerte soluciones completas, confiables y
+            alineadas a tus objetivos.</p>
+        </div>
+        <div class="why-maint-grid">
+          <div class="why-maint-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <h3>MAYOR CONFIABILIDAD</h3>
+            <p>Equipos seguros y en óptimas condiciones.</p>
+          </div>
+          <div class="why-maint-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <h3>MENOS PAROS DE PRODUCCIÓN</h3>
+            <p>Respuestas rápidas y mantenimiento efectivo.</p>
+          </div>
+          <div class="why-maint-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            <h3>CONTINUIDAD OPERATIVA</h3>
+            <p>Procesos estables y productividad sostenida.</p>
+          </div>
+          <div class="why-maint-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <h3>EFICIENCIA Y AHORRO</h3>
+            <p>Optimizamos recursos y reducimos costos operativos.</p>
+          </div>
+          <div class="why-maint-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <h3>MAYOR VIDA ÚTIL DE TU MAQUINARIA</h3>
+            <p>Mantenimiento adecuado que prolonga el desempeño de tus equipos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mantenimiento Banner CTA -->
+      <div class="maint-cta-banner reveal">
+        <div class="maint-cta-content">
+          <p>TU OPERACIÓN NO PUEDE DETENERSE.</p>
+          <h2>NOSOTROS LA MANTENEMOS <span>EN MARCHA</span></h2>
+          <p style="margin-top:6px;">Planeamos. Fabricamos. Instalamos. Mantenemos. Optimizamos.</p>
+        </div>
+        <div class="maint-cta-action">
+          <a href="#contacto" class="btn btn-dark-cta">Cotizar Mantenimiento</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Cómo trabajamos</div>
+        <h2>De plano a montaje, en cuatro etapas</h2>
+        <p>Un mismo equipo desde el levantamiento hasta la entrega, sin intermediarios.</p>
+      </div>
+      <div class="process-list reveal">
+        <div class="process-item">
+          <span class="idx">01</span>
+          <h3>Levantamiento y diseño</h3>
+          <p>Visitamos el terreno y proponemos la solución estructural calculada a tu claro y presupuesto.</p>
+        </div>
+        <div class="process-item">
+          <span class="idx">02</span>
+          <h3>Fabricación</h3>
+          <p>Corte, habilitado y armado con control dimensional antes de salir a obra.</p>
+        </div>
+        <div class="process-item">
+          <span class="idx">03</span>
+          <h3>Montaje en obra</h3>
+          <p>Izaje y ensamble con cuadrilla propia, cuidando tiempos y seguridad.</p>
+        </div>
+        <div class="process-item">
+          <span class="idx">04</span>
+          <h3>Entrega</h3>
+          <p>Revisión final contigo antes de dar por entregado el proyecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quienes-somos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2>Estructuras con propósito, no solo acero</h2>
+        <p>Lo que nos mueve a diseñar, fabricar y montar cada proyecto.</p>
+      </div>
+      <div class="mv-grid reveal">
+        <div class="mv-card">
+          <div class="eyebrow">Misión</div>
+          <p>Construir sueños y convertir proyectos en realidades mediante el diseño, fabricación y montaje de
+            estructuras metálicas de alta calidad, integrando ingeniería, innovación, precisión y compromiso humano.</p>
+          <p>Trabajamos para ofrecer soluciones sólidas, seguras y eficientes que superen las expectativas de nuestros
+            clientes, con responsabilidad, tecnología y pasión por lo que hacemos.</p>
+        </div>
+        <div class="mv-card">
+          <div class="eyebrow">Visión</div>
+          <p>Ser una empresa líder y referente en fabricación de estructuras metálicas, reconocida por su innovación,
+            calidad, seguridad y capacidad para transformar grandes ideas en proyectos que trasciendan.</p>
+          <p>Que cada estructura que construyamos represente confianza, progreso y nuevas posibilidades para las
+            personas, las empresas y las comunidades.</p>
+        </div>
+      </div>
+      <div class="pillars reveal">
+        <div class="pillar">
+          <h3>Construyendo sueños</h3>
+        </div>
+        <div class="pillar">
+          <h3>Innovando soluciones</h3>
+        </div>
+        <div class="pillar">
+          <h3>Avanzando juntos</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mantra">
+    <div class="wrap">
+      <p><strong>Construyendo</strong> sueños. <strong>Innovando</strong> soluciones. <strong>Avanzando</strong> juntos.
+      </p>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Por qué SAG</div>
+        <h2>Compromiso técnico, no solo montaje</h2>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <h3>Fabricación propia</h3>
+          <p>Controlamos calidad y tiempos desde el corte hasta la pieza terminada.</p>
+        </div>
+        <div class="why-card">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <h3>Montaje con equipo propio</h3>
+          <p>Nuestra propia cuadrilla instala en obra, sin subcontratar el paso más crítico.</p>
+        </div>
+        <div class="why-card">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <h3>Especialistas en arcotechos</h3>
+          <p>Techos curvos autoportantes como una de nuestras líneas principales de trabajo.</p>
+        </div>
+        <div class="why-card">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+          <h3>Un solo equipo responsable</h3>
+          <p>Del levantamiento al montaje final, sin intermediarios entre tú y quien construye.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promise">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Nuestra promesa</div>
+        <h2>No solo fabricamos acero</h2>
+      </div>
+      <div class="promise-lines reveal">
+        <p>Planeamos antes de construir.</p>
+        <p>Diseñamos antes de fabricar.</p>
+        <p>Cuidamos antes de mantener.</p>
+        <p>Innovamos antes de quedarnos atrás.</p>
+        <p>Trabajamos en equipo para alcanzar objetivos.</p>
+        <p>Y avanzamos junto con nuestros clientes.</p>
+        <p class="close">Cada estructura representa nuestra capacidad. Cada proyecto, nuestro compromiso. Cada
+          mantenimiento, nuestra confiabilidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <div class="eyebrow">Contacto</div>
+        <h2>Cuéntanos sobre tu proyecto</h2>
+        <p>Escríbenos por WhatsApp, llama directo o llena el formulario. Te respondemos con una propuesta preliminar.
+        </p>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none">
+            <path d="M4 4H8L10 9L7.5 10.5C8.5 13 11 15.5 13.5 16.5L15 14L20 16V20C20 20 12 21 4 4Z"
+              stroke="currentColor" stroke-width="1.4" />
+          </svg>
+          <div>
+            <div class="lbl">Teléfono</div><a class="val" href="tel:+527774346760">777 434 67 60</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none">
+            <path d="M17.6 6.3A8 8 0 0 0 6.2 17.4L4 20l2.7-2.1A8 8 0 1 0 17.6 6.3Z" stroke="currentColor"
+              stroke-width="1.4" />
+            <path
+              d="M9 9.7c0 3 2.3 5.3 5.3 5.3.5 0 .8-.4.7-.9l-.3-1.1c-.1-.4-.5-.6-.9-.5l-1 .3c-.7-.5-1.5-1.3-2-2l.3-1c.1-.4-.1-.8-.5-.9L9.5 9c-.5-.1-.9.2-.9.7Z"
+              fill="currentColor" stroke="none" />
+          </svg>
+          <div>
+            <div class="lbl">WhatsApp</div><a class="val" href="https://wa.me/527774346760" target="_blank"
+              rel="noopener">777 434 67 60</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none">
+            <path d="M3 5H21V19H3V5Z" stroke="currentColor" stroke-width="1.6" />
+            <path d="M3 6L12 13L21 6" stroke="currentColor" stroke-width="1.6" />
+          </svg>
+          <div>
+            <div class="lbl">Correo</div><span class="val pending">Próximamente</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21C12 21 19 14.4 19 9.5C19 5.9 15.9 3 12 3C8.1 3 5 5.9 5 9.5C5 14.4 12 21 12 21Z"
+              stroke="currentColor" stroke-width="1.4" />
+            <circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.4" />
+          </svg>
+          <div>
+            <div class="lbl">Zona de cobertura</div>
+            <div class="val">Morelos</div>
+          </div>
+        </div>
+
+        <div class="quick-contact">
+          <a href="https://wa.me/527774346760" target="_blank" rel="noopener" class="btn btn-amber">Escribir por
+            WhatsApp</a>
+          <a href="tel:+527774346760" class="btn btn-outline">Llamar ahora</a>
+        </div>
+      </div>
+
+      <form id="contactForm">
+        <div class="row2">
+          <div><label for="nombre">Nombre</label><input id="nombre" required></div>
+          <div><label for="empresa">Empresa</label><input id="empresa"></div>
+        </div>
+        <div class="row2">
+          <div><label for="tel">Teléfono</label><input id="tel" type="tel" required></div>
+          <div><label for="tipo">Tipo de proyecto</label>
+            <select id="tipo">
+              <option>Estructuras metálicas (IPR)</option>
+              <option>Estructuras metálicas (Ángulo)</option>
+              <option>Prefabricación con IPR y Losacero</option>
+              <option>Arcotechos (Superspan y 3 valles)</option>
+              <option>Mantenimiento Metalmecánico Industrial</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div><label for="msg">Cuéntanos brevemente qué necesitas</label><textarea id="msg"
+            placeholder="Ej. Arcotecho Superspan de 15x20m para bodega, nave IPR en Cuernavaca, mantenimiento de líneas..."></textarea>
+        </div>
+        <button class="btn btn-amber submit-btn" type="submit">Enviar por WhatsApp</button>
+        <p class="form-note">Al enviar se abre WhatsApp con tu mensaje ya redactado.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div class="footer-logo">
+        <img src="assets/logo/sag-icon.png" alt="SAG Estructuras">
+        <span>SAG ESTRUCTURAS</span>
+      </div>
+      <div class="fine mono">© 2026 SAG Estructuras · Tel. <a href="tel:+527774346760">777 434 67 60</a></div>
+    </div>
+  </footer>
+
+  <!-- Modal Pasarela de Imágenes -->
+  <div class="modal-overlay" id="galleryModal" onclick="closeGalleryOnOverlay(event)">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span id="modalCategoryTag">ARCOTECHOS</span>
+          <h4 id="modalTitleText"
+            style="margin:0; font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:1.05rem;">Galería de
+            Proyectos</h4>
+        </div>
+        <button class="modal-close" onclick="closeGallery()" aria-label="Cerrar galería">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button class="modal-nav prev" onclick="changeSlide(-1)" aria-label="Imagen anterior">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <img id="modalImg" src="" alt="Muestra de proyecto">
+        <button class="modal-nav next" onclick="changeSlide(1)" aria-label="Imagen siguiente">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <div class="modal-caption" id="modalCaption">Descripción de la imagen</div>
+        <div class="modal-counter" id="modalCounter">1 / 5</div>
       </div>
     </div>
   </div>
-</section>
 
-<section class="services" id="servicios">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Qué construimos</div>
-      <h2>Una solución para cada tipo de claro</h2>
-      <p>Estructura primaria, secundaria, cubiertas y mantenimiento, pensados para tu uso específico y tu terreno.</p>
-    </div>
-    <div class="service-grid reveal">
-      <div class="service-card featured" onclick="openGallery('ipr')" title="Ver fotos de Estructuras metálicas (IPR)">
-        <div>
-          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M3 21V8L12 3L21 8V21" stroke="currentColor" stroke-width="1.6"/><path d="M3 12H21" stroke="currentColor" stroke-width="1.6"/></svg>
-          <h3>Estructuras metálicas (IPR)</h3>
-          <p>Diseño, fabricación y montaje de marcos de acero IPR (pesadas y ligeras) calculados para plantas, naves y naves de almacenamiento.</p>
-        </div>
-        <div class="card-footer-action">
-          <span class="spec">IPR PESADAS Y LIGERAS</span>
-          <span class="action-link">Ver fotos →</span>
-        </div>
-      </div>
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-      <div class="service-card" onclick="openGallery('angulo')" title="Ver fotos de Estructuras metálicas (Ángulo)">
-        <div>
-          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 20L10 4L14 14L20 4" stroke="currentColor" stroke-width="1.6"/></svg>
-          <h3>Estructuras metálicas (Ángulo)</h3>
-          <p>Estructuras ligeras, armaduras y marimbas a base de perfiles de ángulo para techados, cobertizos, soportes y naves.</p>
-        </div>
-        <div class="card-footer-action">
-          <span class="spec">ARMADURAS Y ÁNGULO</span>
-          <span class="action-link">Ver fotos →</span>
-        </div>
-      </div>
+    // Formulario -> WhatsApp (sin backend, mensaje pre-armado)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+      const tel = document.getElementById('tel').value.trim();
+      const tipo = document.getElementById('tipo').value;
+      const msg = document.getElementById('msg').value.trim();
 
-      <div class="service-card" onclick="openGallery('losacero')" title="Ver fotos de Prefabricación con IPR y Losacero">
-        <div>
-          <svg class="icn" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" stroke="currentColor" stroke-width="1.6"/><path d="M4 12H20" stroke="currentColor" stroke-width="1.6"/></svg>
-          <h3>Prefabricación con IPR y Losacero</h3>
-          <p>Sistemas de entrepisos, mezzanines y losacero integrados a perfiles IPR habilitados y modulados desde taller.</p>
-        </div>
-        <div class="card-footer-action">
-          <span class="spec">PREFABRICACIÓN Y LOSACERO</span>
-          <span class="action-link">Ver fotos →</span>
-        </div>
-      </div>
+      let texto = `Hola, soy ${nombre}`;
+      if (empresa) texto += ` de ${empresa}`;
+      texto += `. Mi teléfono es ${tel}. Me interesa un proyecto de: ${tipo}.`;
+      if (msg) texto += ` ${msg}`;
 
-      <div class="service-card" onclick="openGallery('arcotechos')" title="Ver fotos de Arcotechos">
-        <div>
-          <svg class="icn" viewBox="0 0 24 24" fill="none"><path d="M4 18C4 12 8 8 12 8C16 8 20 12 20 18" stroke="currentColor" stroke-width="1.6"/><path d="M2 18H22" stroke="currentColor" stroke-width="1.6"/></svg>
-          <h3>Arcotechos</h3>
-          <p>Techos curvos autoportantes en sistemas Superspan y 3 valles atornillable. Cubren claros amplios sin columnas centrales.</p>
-        </div>
-        <div class="card-footer-action">
-          <span class="spec">SUPERSPAN Y 3 VALLES ATORNILLABLE</span>
-          <span class="action-link">Ver fotos →</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      const url = `https://wa.me/527774346760?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    });
 
-<section id="proceso">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Cómo trabajamos</div>
-      <h2>De plano a montaje, en cuatro etapas</h2>
-      <p>Un mismo equipo desde el levantamiento hasta la entrega, sin intermediarios.</p>
-    </div>
-    <div class="process-list reveal">
-      <div class="process-item">
-        <span class="idx">01</span>
-        <h3>Levantamiento y diseño</h3>
-        <p>Visitamos el terreno y proponemos la solución estructural calculada a tu claro y presupuesto.</p>
-      </div>
-      <div class="process-item">
-        <span class="idx">02</span>
-        <h3>Fabricación</h3>
-        <p>Corte, habilitado y armado con control dimensional antes de salir a obra.</p>
-      </div>
-      <div class="process-item">
-        <span class="idx">03</span>
-        <h3>Montaje en obra</h3>
-        <p>Izaje y ensamble con cuadrilla propia, cuidando tiempos y seguridad.</p>
-      </div>
-      <div class="process-item">
-        <span class="idx">04</span>
-        <h3>Entrega</h3>
-        <p>Revisión final contigo antes de dar por entregado el proyecto.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    // Modal Pasarela de Imágenes
+    const galleries = {
+      ipr: {
+        tag: 'ESTRUCTURAS METÁLICAS (IPR)',
+        title: 'Perfiles IPR Pesados y Ligeros',
+        items: [
+          { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Marcos principales de acero IPR para nave industrial' },
+          { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Estructura primaria terminada previa a colocación de cubierta' },
+          { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Montaje estructural de alta resistencia para almacenamiento' }
+        ]
+      },
+      angulo: {
+        tag: 'ESTRUCTURAS METÁLICAS (ÁNGULO)',
+        title: 'Armaduras y Perfiles de Ángulo',
+        items: [
+          { src: 'assets/img/proyecto-estructura-medida.jpg', caption: 'Estructura ligera a dos aguas en perfiles de ángulo' },
+          { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Fabricación y ensamble de marimbas y soportes de ángulo' }
+        ]
+      },
+      losacero: {
+        tag: 'PREFABRICACIÓN CON IPR Y LOSACERO',
+        title: 'Sistemas Prefabricados y Losacero',
+        items: [
+          { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Habilitado e integración de losacero sobre trabes IPR' },
+          { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Módulos prefabricados para entrepisos y naves industriales' },
+          { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Armado rápido en sitio de losacero con perfiles IPR' }
+        ]
+      },
+      arcotechos: {
+        tag: 'ARCOTECHOS',
+        title: 'Sistemas Superspan y 3 Valles Atornillable',
+        items: [
+          { src: 'assets/img/proyecto-arcotecho-interior.jpg', caption: 'Interior de nave con cubierta curvilínea Superspan autoportante' },
+          { src: 'assets/img/proyecto-arcotecho-obra.jpg', caption: 'Sistema de 3 valles atornillable integrado a muro de block' },
+          { src: 'assets/img/proyecto-arcotecho-nave.jpg', caption: 'Nave industrial completa con cubierta curvo autoportante' },
+          { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Montaje de lámina con cuadrilla propia en campo' },
+          { src: 'assets/img/hero-arcotecho-montaje.jpg', caption: 'Izaje y rolado en sitio de perfiles arcotecho' }
+        ]
+      },
+      ind_cementera: {
+        tag: 'SECTOR CEMENTERO',
+        title: 'Mantenimiento en Industria Cementera',
+        items: [{ src: 'assets/img/servicios-nave-bg.jpg', caption: 'Soporte y mantenimiento de estructuras e instalaciones cementeras' }]
+      },
+      ind_alimentos: {
+        tag: 'SECTOR ALIMENTARIO',
+        title: 'Mantenimiento en Industria de Alimentos',
+        items: [{ src: 'assets/img/proyecto-arcotecho-nave.jpg', caption: 'Mantenimiento preventivo y correctivo en plantas de alimentos' }]
+      },
+      ind_autopartes: {
+        tag: 'SECTOR AUTOMOTRIZ / AUTOPARTES',
+        title: 'Mantenimiento en Industria de Autopartes',
+        items: [{ src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Intervención en naves y líneas de producción de autopartes' }]
+      },
+      ind_manufactura: {
+        tag: 'PLANTAS DE MANUFACTURA',
+        title: 'Mantenimiento en Plantas Industriales',
+        items: [{ src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Alineación y mantenimiento de componentes mecánicos y estructuras' }]
+      },
+      ind_fabricas: {
+        tag: 'FÁBRICAS Y PROCESOS',
+        title: 'Mantenimiento de Procesos Industriales',
+        items: [{ src: 'assets/img/hero-arcotecho-montaje.jpg', caption: 'Optimización y atención a fallas críticas en fábricas' }]
+      },
+      ind_otros: {
+        tag: 'OTROS SECTORES',
+        title: 'Mantenimiento Metalmecánico General',
+        items: [{ src: 'assets/img/proyecto-estructura-medida.jpg', caption: 'Soluciones a la medida de mantenimiento metalmecánico industrial' }]
+      }
+    };
 
-<section id="quienes-somos">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Quiénes somos</div>
-      <h2>Estructuras con propósito, no solo acero</h2>
-      <p>Lo que nos mueve a diseñar, fabricar y montar cada proyecto.</p>
-    </div>
-    <div class="mv-grid reveal">
-      <div class="mv-card">
-        <div class="eyebrow">Misión</div>
-        <p>Construir sueños y convertir proyectos en realidades mediante el diseño, fabricación y montaje de estructuras metálicas de alta calidad, integrando ingeniería, innovación, precisión y compromiso humano.</p>
-        <p>Trabajamos para ofrecer soluciones sólidas, seguras y eficientes que superen las expectativas de nuestros clientes, con responsabilidad, tecnología y pasión por lo que hacemos.</p>
-      </div>
-      <div class="mv-card">
-        <div class="eyebrow">Visión</div>
-        <p>Ser una empresa líder y referente en fabricación de estructuras metálicas, reconocida por su innovación, calidad, seguridad y capacidad para transformar grandes ideas en proyectos que trasciendan.</p>
-        <p>Que cada estructura que construyamos represente confianza, progreso y nuevas posibilidades para las personas, las empresas y las comunidades.</p>
-      </div>
-    </div>
-    <div class="pillars reveal">
-      <div class="pillar"><h3>Construyendo sueños</h3></div>
-      <div class="pillar"><h3>Innovando soluciones</h3></div>
-      <div class="pillar"><h3>Avanzando juntos</h3></div>
-    </div>
+    let currentGalleryKey = 'arcotechos';
+    let currentSlideIndex = 0;
 
-    <div class="decalogo-block reveal">
-      <div class="decalogo-head">
-        <span class="eyebrow" style="margin:0;">Diez principios detrás de cada proyecto</span>
-        <span class="lbl">Nuestra Filosofía</span>
-      </div>
-      <div class="values-grid">
-        <div class="value-card"><span class="num">01</span><h3>Trabajo en equipo</h3></div>
-        <div class="value-card"><span class="num">02</span><h3>Compañerismo y respeto</h3></div>
-        <div class="value-card"><span class="num">03</span><h3>Compromiso</h3></div>
-        <div class="value-card"><span class="num">04</span><h3>Planeación y cumplimiento</h3></div>
-        <div class="value-card"><span class="num">05</span><h3>Calidad y excelencia</h3></div>
-        <div class="value-card"><span class="num">06</span><h3>Eficiencia y confiabilidad</h3></div>
-        <div class="value-card"><span class="num">07</span><h3>Innovación</h3></div>
-        <div class="value-card"><span class="num">08</span><h3>Seguridad y profesionalismo</h3></div>
-        <div class="value-card"><span class="num">09</span><h3>Responsabilidad ambiental</h3></div>
-        <div class="value-card"><span class="num">10</span><h3>Orientación al cliente</h3></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="mantra">
-  <div class="wrap">
-    <p><strong>Construyendo</strong> sueños. <strong>Innovando</strong> soluciones. <strong>Avanzando</strong> juntos.</p>
-  </div>
-</section>
-
-<section id="nosotros">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Por qué SAG</div>
-      <h2>Compromiso técnico, no solo montaje</h2>
-    </div>
-    <div class="why-grid reveal">
-      <div class="why-card">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8"/></svg>
-        <h3>Fabricación propia</h3>
-        <p>Controlamos calidad y tiempos desde el corte hasta la pieza terminada.</p>
-      </div>
-      <div class="why-card">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8"/></svg>
-        <h3>Montaje con equipo propio</h3>
-        <p>Nuestra propia cuadrilla instala en obra, sin subcontratar el paso más crítico.</p>
-      </div>
-      <div class="why-card">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8"/></svg>
-        <h3>Especialistas en arcotechos</h3>
-        <p>Techos curvos autoportantes como una de nuestras líneas principales de trabajo.</p>
-      </div>
-      <div class="why-card">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8"/></svg>
-        <h3>Un solo equipo responsable</h3>
-        <p>Del levantamiento al montaje final, sin intermediarios entre tú y quien construye.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="promise">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow">Nuestra promesa</div>
-      <h2>No solo fabricamos acero</h2>
-    </div>
-    <div class="promise-lines reveal">
-      <p>Planeamos antes de construir.</p>
-      <p>Diseñamos antes de fabricar.</p>
-      <p>Cuidamos antes de mantener.</p>
-      <p>Innovamos antes de quedarnos atrás.</p>
-      <p>Trabajamos en equipo para alcanzar objetivos.</p>
-      <p>Y avanzamos junto con nuestros clientes.</p>
-      <p class="close">Cada estructura representa nuestra capacidad. Cada proyecto, nuestro compromiso. Cada mantenimiento, nuestra confiabilidad.</p>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contacto">
-  <div class="wrap contact-grid">
-    <div class="contact-info reveal">
-      <div class="eyebrow">Contacto</div>
-      <h2>Cuéntanos sobre tu proyecto</h2>
-      <p>Escríbenos por WhatsApp, llama directo o llena el formulario. Te respondemos con una propuesta preliminar.</p>
-      <div class="info-row">
-        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M4 4H8L10 9L7.5 10.5C8.5 13 11 15.5 13.5 16.5L15 14L20 16V20C20 20 12 21 4 4Z" stroke="currentColor" stroke-width="1.4"/></svg>
-        <div><div class="lbl">Teléfono</div><a class="val" href="tel:+527774346760">777 434 67 60</a></div>
-      </div>
-      <div class="info-row">
-        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.3A8 8 0 0 0 6.2 17.4L4 20l2.7-2.1A8 8 0 1 0 17.6 6.3Z" stroke="currentColor" stroke-width="1.4"/><path d="M9 9.7c0 3 2.3 5.3 5.3 5.3.5 0 .8-.4.7-.9l-.3-1.1c-.1-.4-.5-.6-.9-.5l-1 .3c-.7-.5-1.5-1.3-2-2l.3-1c.1-.4-.1-.8-.5-.9L9.5 9c-.5-.1-.9.2-.9.7Z" fill="currentColor" stroke="none"/></svg>
-        <div><div class="lbl">WhatsApp</div><a class="val" href="https://wa.me/527774346760" target="_blank" rel="noopener">777 434 67 60</a></div>
-      </div>
-      <div class="info-row">
-        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 5H21V19H3V5Z" stroke="currentColor" stroke-width="1.6"/><path d="M3 6L12 13L21 6" stroke="currentColor" stroke-width="1.6"/></svg>
-        <div><div class="lbl">Correo</div><span class="val pending">Próximamente</span></div>
-      </div>
-      <div class="info-row">
-        <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 19 14.4 19 9.5C19 5.9 15.9 3 12 3C8.1 3 5 5.9 5 9.5C5 14.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="9.5" r="2.3" stroke="currentColor" stroke-width="1.4"/></svg>
-        <div><div class="lbl">Zona de cobertura</div><div class="val">Morelos</div></div>
-      </div>
-
-      <div class="quick-contact">
-        <a href="https://wa.me/527774346760" target="_blank" rel="noopener" class="btn btn-amber">Escribir por WhatsApp</a>
-        <a href="tel:+527774346760" class="btn btn-outline">Llamar ahora</a>
-      </div>
-    </div>
-
-    <form id="contactForm">
-      <div class="row2">
-        <div><label for="nombre">Nombre</label><input id="nombre" required></div>
-        <div><label for="empresa">Empresa</label><input id="empresa"></div>
-      </div>
-      <div class="row2">
-        <div><label for="tel">Teléfono</label><input id="tel" type="tel" required></div>
-        <div><label for="tipo">Tipo de proyecto</label>
-          <select id="tipo">
-            <option>Estructuras metálicas (IPR)</option>
-            <option>Estructuras metálicas (Ángulo)</option>
-            <option>Prefabricación con IPR y Losacero</option>
-            <option>Arcotechos (Superspan y 3 valles)</option>
-            <option>Otro</option>
-          </select>
-        </div>
-      </div>
-      <div><label for="msg">Cuéntanos brevemente qué necesitas</label><textarea id="msg" placeholder="Ej. Arcotecho Superspan de 15x20m para bodega, nave IPR en Cuernavaca..."></textarea></div>
-      <button class="btn btn-amber submit-btn" type="submit">Enviar por WhatsApp</button>
-      <p class="form-note">Al enviar se abre WhatsApp con tu mensaje ya redactado.</p>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap footer-row">
-    <div class="footer-logo">
-      <img src="assets/logo/sag-icon.png" alt="SAG Estructuras">
-      <span>SAG ESTRUCTURAS</span>
-    </div>
-    <div class="fine mono">© 2026 SAG Estructuras · Tel. <a href="tel:+527774346760">777 434 67 60</a></div>
-  </div>
-</footer>
-
-<!-- Modal Pasarela de Imágenes -->
-<div class="modal-overlay" id="galleryModal" onclick="closeGalleryOnOverlay(event)">
-  <div class="modal-container">
-    <div class="modal-header">
-      <div class="modal-title">
-        <span id="modalCategoryTag">ARCOTECHOS</span>
-        <h4 id="modalTitleText" style="margin:0; font-family:'Oswald',sans-serif; text-transform:uppercase; font-size:1.05rem;">Galería de Proyectos</h4>
-      </div>
-      <button class="modal-close" onclick="closeGallery()" aria-label="Cerrar galería">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="modal-body">
-      <button class="modal-nav prev" onclick="changeSlide(-1)" aria-label="Imagen anterior">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <img id="modalImg" src="" alt="Muestra de proyecto">
-      <button class="modal-nav next" onclick="changeSlide(1)" aria-label="Imagen siguiente">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-    <div class="modal-footer">
-      <div class="modal-caption" id="modalCaption">Descripción de la imagen</div>
-      <div class="modal-counter" id="modalCounter">1 / 5</div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Scroll reveal
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // Formulario -> WhatsApp (sin backend, mensaje pre-armado)
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value.trim();
-    const empresa = document.getElementById('empresa').value.trim();
-    const tel = document.getElementById('tel').value.trim();
-    const tipo = document.getElementById('tipo').value;
-    const msg = document.getElementById('msg').value.trim();
-
-    let texto = `Hola, soy ${nombre}`;
-    if(empresa) texto += ` de ${empresa}`;
-    texto += `. Mi teléfono es ${tel}. Me interesa un proyecto de: ${tipo}.`;
-    if(msg) texto += ` ${msg}`;
-
-    const url = `https://wa.me/527774346760?text=${encodeURIComponent(texto)}`;
-    window.open(url, '_blank');
-  });
-
-  // Modal Pasarela de Imágenes
-  const galleries = {
-    ipr: {
-      tag: 'ESTRUCTURAS METÁLICAS (IPR)',
-      title: 'Perfiles IPR Pesados y Ligeros',
-      items: [
-        { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Marcos principales de acero IPR para nave industrial' },
-        { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Estructura primaria terminada previa a colocación de cubierta' },
-        { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Montaje estructural de alta resistencia para almacenamiento' }
-      ]
-    },
-    angulo: {
-      tag: 'ESTRUCTURAS METÁLICAS (ÁNGULO)',
-      title: 'Armaduras y Perfiles de Ángulo',
-      items: [
-        { src: 'assets/img/proyecto-estructura-medida.jpg', caption: 'Estructura ligera a dos aguas en perfiles de ángulo' },
-        { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Fabricación y ensamble de marimbas y soportes de ángulo' }
-      ]
-    },
-    losacero: {
-      tag: 'PREFABRICACIÓN CON IPR Y LOSACERO',
-      title: 'Sistemas Prefabricados y Losacero',
-      items: [
-        { src: 'assets/img/proyecto-nave-interior.jpg', caption: 'Habilitado e integración de losacero sobre trabes IPR' },
-        { src: 'assets/img/servicios-nave-bg.jpg', caption: 'Módulos prefabricados para entrepisos y naves industriales' },
-        { src: 'assets/img/proyecto-nave-industrial.jpg', caption: 'Armado rápido en sitio de losacero con perfiles IPR' }
-      ]
-    },
-    arcotechos: {
-      tag: 'ARCOTECHOS',
-      title: 'Sistemas Superspan y 3 Valles Atornillable',
-      items: [
-        { src: 'assets/img/proyecto-arcotecho-interior.jpg', caption: 'Interior de nave con cubierta curvilínea Superspan autoportante' },
-        { src: 'assets/img/proyecto-arcotecho-obra.jpg', caption: 'Sistema de 3 valles atornillable integrado a muro de block' },
-        { src: 'assets/img/proyecto-arcotecho-nave.jpg', caption: 'Nave industrial completa con cubierta curvo autoportante' },
-        { src: 'assets/img/proyecto-montaje-curvo.jpg', caption: 'Montaje de lámina con cuadrilla propia en campo' },
-        { src: 'assets/img/hero-arcotecho-montaje.jpg', caption: 'Izaje y rolado en sitio de perfiles arcotecho' }
-      ]
+    function openGallery(key) {
+      if (!galleries[key]) return;
+      currentGalleryKey = key;
+      currentSlideIndex = 0;
+      updateModalContent();
+      document.getElementById('galleryModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
-  };
 
-  let currentGalleryKey = 'arcotechos';
-  let currentSlideIndex = 0;
-
-  function openGallery(key) {
-    if(!galleries[key]) return;
-    currentGalleryKey = key;
-    currentSlideIndex = 0;
-    updateModalContent();
-    document.getElementById('galleryModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeGallery() {
-    document.getElementById('galleryModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function closeGalleryOnOverlay(e) {
-    if (e.target.id === 'galleryModal') {
-      closeGallery();
+    function closeGallery() {
+      document.getElementById('galleryModal').classList.remove('active');
+      document.body.style.overflow = '';
     }
-  }
 
-  function changeSlide(direction) {
-    const items = galleries[currentGalleryKey].items;
-    currentSlideIndex = (currentSlideIndex + direction + items.length) % items.length;
-    updateModalContent();
-  }
+    function closeGalleryOnOverlay(e) {
+      if (e.target.id === 'galleryModal') {
+        closeGallery();
+      }
+    }
 
-  function updateModalContent() {
-    const gallery = galleries[currentGalleryKey];
-    const item = gallery.items[currentSlideIndex];
-    document.getElementById('modalCategoryTag').textContent = gallery.tag;
-    document.getElementById('modalTitleText').textContent = gallery.title;
-    document.getElementById('modalImg').src = item.src;
-    document.getElementById('modalImg').alt = item.caption;
-    document.getElementById('modalCaption').textContent = item.caption;
-    document.getElementById('modalCounter').textContent = `${currentSlideIndex + 1} / ${gallery.items.length}`;
-  }
+    function changeSlide(direction) {
+      const items = galleries[currentGalleryKey].items;
+      currentSlideIndex = (currentSlideIndex + direction + items.length) % items.length;
+      updateModalContent();
+    }
 
-  document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('galleryModal');
-    if (!modal || !modal.classList.contains('active')) return;
-    if (e.key === 'Escape') closeGallery();
-    if (e.key === 'ArrowLeft') changeSlide(-1);
-    if (e.key === 'ArrowRight') changeSlide(1);
-  });
-</script>
+    function updateModalContent() {
+      const gallery = galleries[currentGalleryKey];
+      const item = gallery.items[currentSlideIndex];
+      document.getElementById('modalCategoryTag').textContent = gallery.tag;
+      document.getElementById('modalTitleText').textContent = gallery.title;
+      document.getElementById('modalImg').src = item.src;
+      document.getElementById('modalImg').alt = item.caption;
+      document.getElementById('modalCaption').textContent = item.caption;
+      document.getElementById('modalCounter').textContent = `${currentSlideIndex + 1} / ${gallery.items.length}`;
+    }
+
+    document.addEventListener('keydown', function (e) {
+      const modal = document.getElementById('galleryModal');
+      if (!modal || !modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    });
+  </script>
 
 </body>
+
 </html>
